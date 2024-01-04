@@ -99,7 +99,7 @@ public class BlueLeftAuto extends LinearOpMode {
         rightWinch.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         leftWinch.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        hips.setPosition(.22);
+        hips.setPosition(.27);
         arch.setPosition(.69);
         backLeg.setPosition(.77);  // .9 is closed pos
         frontLeg.setPosition(.52); //  .6 is closed pos
@@ -171,7 +171,7 @@ public class BlueLeftAuto extends LinearOpMode {
                     .strafeToConstantHeading(new Vector2d(45,30))
                     .build());
             sleep(300);
-            hips.setPosition(.22);
+            hips.setPosition(.27);
             backLeg.setPosition(.62);  // .9 is closed pos
             frontLeg.setPosition(.4);
             sleep(300);
@@ -190,7 +190,7 @@ public class BlueLeftAuto extends LinearOpMode {
                     .strafeToConstantHeading(new Vector2d(40,55))
                     .build());
             sleep(300);
-            hips.setPosition(.22);
+            hips.setPosition(.27);
             backLeg.setPosition(.62);  // .9 is closed pos
             frontLeg.setPosition(.4);
             sleep(300);
@@ -210,7 +210,7 @@ public class BlueLeftAuto extends LinearOpMode {
            .strafeToConstantHeading(new Vector2d(50,48))
                     .build());
             sleep(300);
-            hips.setPosition(.22);
+            hips.setPosition(.27);
             backLeg.setPosition(.62);  // .9 is closed pos
             frontLeg.setPosition(.4);
             sleep(300);
@@ -243,7 +243,7 @@ public class BlueLeftAuto extends LinearOpMode {
             rightWinch.setTargetPosition(-20);
             rightWinch.setPower(.3);
             sleep(1000);
-            hips.setPosition(.22);
+            hips.setPosition(.27);
             sleep(200);
             backLeg.setPosition(.76);  // .9 is closed pos
             sleep(200);
@@ -269,7 +269,7 @@ public class BlueLeftAuto extends LinearOpMode {
             rightWinch.setTargetPosition(-20);
             rightWinch.setPower(.3);
             sleep(1000);
-            hips.setPosition(.22);
+            hips.setPosition(.27);
             sleep(200);
             backLeg.setPosition(.76);  // .9 is closed pos
             sleep(200);
@@ -296,7 +296,7 @@ public class BlueLeftAuto extends LinearOpMode {
             rightWinch.setTargetPosition(-20);
             rightWinch.setPower(.3);
             sleep(1000);
-            hips.setPosition(.22);
+            hips.setPosition(.27);
             sleep(200);
             backLeg.setPosition(.76);  // .9 is closed pos
             sleep(200);

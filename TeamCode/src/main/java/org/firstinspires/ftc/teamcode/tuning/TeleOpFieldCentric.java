@@ -104,7 +104,7 @@ public class TeleOpFieldCentric extends LinearOpMode{
 
 
 
-        hips.setPosition(.22);
+        hips.setPosition(.27);
         arch.setPosition(.69);
         backLeg.setPosition(.77);  // .9 is closed pos
         frontLeg.setPosition(.52); //  .6 is closed pos
@@ -142,13 +142,13 @@ public class TeleOpFieldCentric extends LinearOpMode{
                 frontLeg.setPosition(.6);
                 sleep(50);
                 hips.setPosition(.14);
-                sleep(50);
+                sleep(200);
                 arch.setPosition(.69);
                 sleep(50);
                 leftSlider = 7;
                 rightSlider = 7;
                 sleep(200);
-                hips.setPosition(.22);
+                hips.setPosition(.27);
                 sleep(50);
                 backLeg.setPosition(.76);  // .9 is closed pos
                 sleep(50);
@@ -169,8 +169,12 @@ public class TeleOpFieldCentric extends LinearOpMode{
             }
 
             if(gamepad1.right_bumper){
-                sneakyLink.setPosition(.6);
-                sneakyRink.setPosition(.4);
+                sneakyLink.setPosition(.54);
+                sneakyRink.setPosition(.46);
+            }
+            if(gamepad1.dpad_down){
+                sneakyLink.setPosition(.7);
+                sneakyRink.setPosition(.3);
             }
             if(gamepad1.left_bumper){
                 sneakyLink.setPosition(1);
