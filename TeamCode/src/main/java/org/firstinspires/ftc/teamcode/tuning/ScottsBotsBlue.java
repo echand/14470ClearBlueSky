@@ -111,7 +111,7 @@ public class ScottsBotsBlue extends LinearOpMode {
         zone = TeamPropDetector.getBluePropZone();
         TeamPropDetector.endPropDetection();
         //Actions.runBlocking(drive.actionBuilder(new Pose2d(12.00, 63, Math.toRadians(90))).strafeTo(new Vector2d(12,30)).build());
-        //Drive to SPIke Mark
+        //Drive to SPIke Mark and get from stack
         if (zone == 1) {
             Actions.runBlocking(drive.actionBuilder(new Pose2d(12, 63, Math.toRadians(90)))
                     .strafeToConstantHeading(new Vector2d(15, 44.00))
@@ -123,13 +123,25 @@ public class ScottsBotsBlue extends LinearOpMode {
                     .build());
         } else if (zone == 2) {
             Actions.runBlocking(drive.actionBuilder(new Pose2d(12, 63, Math.toRadians(90)))
-                    .strafeTo(new Vector2d(13, 35))
+                    .strafeTo(new Vector2d(13,35))
                     .strafeTo(new Vector2d(28,40))
-                    .strafeTo(new Vector2d(28,12))
+                    .strafeTo(new Vector2d(28,14))
                     .turnTo(Math.toRadians(180))
-                    .strafeTo(new Vector2d(33,12))
                     .build());
+            sneakyLink.setPosition(.75); //.1 is rest pos
+            sneakyRink.setPosition(.25); // 01 is rest pos
+            sleep(200);
             intake.setPower(-1);
+            Actions.runBlocking(drive.actionBuilder(drive.pose)
+            .strafeTo(new Vector2d(25,14 ))
+                    .build());
+            sleep(1500);
+            sneakyLink.setPosition(1); // 1 is rest pos
+            sneakyRink.setPosition(0); // 0 is rest pos
+            sleep(300);
+            intake.setPower(1);
+            sleep(1000);
+            intake.setPower(0);
 
 
         } else {
@@ -142,9 +154,7 @@ public class ScottsBotsBlue extends LinearOpMode {
         telemetry.addLine("Pose" + drive.pose.position);
         telemetry.addLine("HEading" + Math.toDegrees(drive.pose.heading.log()));
         telemetry.update();
-        while(!isStopRequested()){
 
-        }
 
         //Drive to Backdrop
 
@@ -156,14 +166,22 @@ public class ScottsBotsBlue extends LinearOpMode {
                     .build());
         } else if (zone == 2) {
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeTo(new Vector2d(12, 44))
-                    .strafeToLinearHeading(new Vector2d(35, 40), Math.toRadians(180))
-
+                    .strafeTo(new Vector2d(75,14))
+                    .strafeTo(new Vector2d(120,-8))
+                    .strafeTo(new Vector2d(126,-10))
                     .build());
+
+
         } else Actions.runBlocking(drive.actionBuilder(drive.pose)
                 .strafeToLinearHeading(new Vector2d(37, 38), Math.toRadians(180))
                 .build());
+        drive.updatePoseEstimate();
+        telemetry.addLine("Pose" + drive.pose.position);
+        telemetry.addLine("HEading" + Math.toDegrees(drive.pose.heading.log()));
+        telemetry.update();
+        while(!isStopRequested()){
 
+        }
 
         //PARK
         Actions.runBlocking(drive.actionBuilder(drive.pose)
