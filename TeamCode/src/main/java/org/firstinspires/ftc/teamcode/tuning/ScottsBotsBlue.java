@@ -128,19 +128,22 @@ public class ScottsBotsBlue extends LinearOpMode {
                     .strafeTo(new Vector2d(28,14))
                     .turnTo(Math.toRadians(180))
                     .build());
-            sneakyLink.setPosition(.75); //.1 is rest pos
+            sneakyLink.setPosition(.75); //1 is rest pos
             sneakyRink.setPosition(.25); // 01 is rest pos
-            sleep(200);
-            intake.setPower(-1);
+            sleep(100);
+            intake.setPower(-.7);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
             .strafeTo(new Vector2d(25,14 ))
+                            .strafeTo(new Vector2d(28,14))
                     .build());
-            sleep(1500);
+            sneakyLink.setPosition(.5);
+            sneakyRink.setPosition(.5);
+            sleep(1000);
             sneakyLink.setPosition(1); // 1 is rest pos
             sneakyRink.setPosition(0); // 0 is rest pos
-            sleep(300);
+            sleep(50);
             intake.setPower(1);
-            sleep(1000);
+            sleep(300);
             intake.setPower(0);
 
 
@@ -166,10 +169,25 @@ public class ScottsBotsBlue extends LinearOpMode {
                     .build());
         } else if (zone == 2) {
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeTo(new Vector2d(75,14))
-                    .strafeTo(new Vector2d(120,-8))
-                    .strafeTo(new Vector2d(126,-10))
+                    .strafeToConstantHeading(new Vector2d(80,14))
+                    .strafeToConstantHeading(new Vector2d(117,-12))
                     .build());
+            backLeg.setPosition(.9);
+            frontLeg.setPosition(.7);
+            sleep(400);
+            rightWinch.setTargetPosition(-900);
+            rightWinch.setPower(.8);
+            leftWinch.setTargetPosition(-900);
+            leftWinch.setPower(.8);
+            Actions.runBlocking(drive.actionBuilder(drive.pose)
+                    .strafeToConstantHeading(new Vector2d(130,-22))
+                    .build());
+            backLeg.setPosition(.9);
+            frontLeg.setPosition(.7);
+            rightWinch.setTargetPosition(-900);
+            rightWinch.setPower(.8);
+            leftWinch.setTargetPosition(-900);
+            leftWinch.setPower(.8);
 
 
         } else Actions.runBlocking(drive.actionBuilder(drive.pose)
