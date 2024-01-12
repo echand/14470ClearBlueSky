@@ -125,7 +125,7 @@ public class ScottsBotsBlue extends LinearOpMode {
             Actions.runBlocking(drive.actionBuilder(new Pose2d(12, 63, Math.toRadians(90)))
                     .strafeTo(new Vector2d(13,35))
                     .strafeTo(new Vector2d(28,40))
-                    .strafeTo(new Vector2d(28,14))
+                    .strafeTo(new Vector2d(28,55))  //y value here should be the same in line 136+137
                     .turnTo(Math.toRadians(180))
                     .build());
             sneakyLink.setPosition(.75); //1 is rest pos
@@ -133,11 +133,11 @@ public class ScottsBotsBlue extends LinearOpMode {
             sleep(100);
             intake.setPower(-.7);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-            .strafeTo(new Vector2d(25,14 ))
-                            .strafeTo(new Vector2d(28,14))
+            .strafeTo(new Vector2d(25,55 ))
+                            .strafeTo(new Vector2d(28,55))
                     .build());
-            sneakyLink.setPosition(.5);
-            sneakyRink.setPosition(.5);
+            sneakyLink.setPosition(.7);
+            sneakyRink.setPosition(.3);
             sleep(1000);
             sneakyLink.setPosition(1); // 1 is rest pos
             sneakyRink.setPosition(0); // 0 is rest pos
@@ -182,12 +182,7 @@ public class ScottsBotsBlue extends LinearOpMode {
             Actions.runBlocking(drive.actionBuilder(drive.pose)
                     .strafeToConstantHeading(new Vector2d(130,-22))
                     .build());
-            backLeg.setPosition(.9);
-            frontLeg.setPosition(.7);
-            rightWinch.setTargetPosition(-900);
-            rightWinch.setPower(.8);
-            leftWinch.setTargetPosition(-900);
-            leftWinch.setPower(.8);
+
 
 
         } else Actions.runBlocking(drive.actionBuilder(drive.pose)
