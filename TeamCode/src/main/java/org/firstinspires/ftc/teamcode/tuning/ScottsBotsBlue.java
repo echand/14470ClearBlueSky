@@ -2,7 +2,11 @@
 
 package org.firstinspires.ftc.teamcode.tuning;
 
+import androidx.annotation.NonNull;
+
 import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
+import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
@@ -99,7 +103,7 @@ public class ScottsBotsBlue extends LinearOpMode {
         rightWinch.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         leftWinch.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        hips.setPosition(.22);
+        hips.setPosition(.22); // og is .22
         arch.setPosition(.69);
         backLeg.setPosition(.77);  // .9 is closed pos
         frontLeg.setPosition(.52); //  .6 is closed pos
@@ -114,43 +118,74 @@ public class ScottsBotsBlue extends LinearOpMode {
         //Drive to SPIke Mark and get from stack
         if (zone == 1) {
             Actions.runBlocking(drive.actionBuilder(new Pose2d(12, 63, Math.toRadians(90)))
-                    .strafeToConstantHeading(new Vector2d(15, 44.00))
-                    .strafeToLinearHeading(new Vector2d(15.83, 44.43), Math.toRadians(150))
-                    .strafeToConstantHeading(new Vector2d(20, 44.33))
+                    .strafeToLinearHeading(new Vector2d(20, 27), Math.toRadians(125))
+                  //  .strafeToLinearHeading(new Vector2d(8, 30), Math.toRadians(180))
                     //.strafeToConstantHeading(new Vector2d(10, 44.33))
                     //.strafeToConstantHeading(new Vector2d(13,36))
 
                     .build());
         } else if (zone == 2) {
-            Actions.runBlocking(drive.actionBuilder(new Pose2d(12, 63, Math.toRadians(90)))
-                    .strafeTo(new Vector2d(13,35))
-                    .strafeTo(new Vector2d(28,40))
-                    .strafeTo(new Vector2d(28,55))  //y value here should be the same in line 136+137
-                    .turnTo(Math.toRadians(180))
+            Actions.runBlocking(drive.actionBuilder(new Pose2d(12, 65, Math.toRadians(90)))
+                    .strafeToConstantHeading(new Vector2d(13,35))
+                    .strafeToConstantHeading(new Vector2d(28,42))
+                            .turnTo(Math.toRadians(180))
                     .build());
-            sneakyLink.setPosition(.75); //1 is rest pos
-            sneakyRink.setPosition(.25); // 01 is rest pos
-            sleep(100);
-            intake.setPower(-.7);
+            sneakyLink.setPosition(.75); //weirdo position la la lala la
+            sneakyRink.setPosition(.25);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-            .strafeTo(new Vector2d(25,55 ))
-                            .strafeTo(new Vector2d(28,55))
+            .strafeToConstantHeading(new Vector2d(25,48 ))// increase x gets farther away from stack
                     .build());
-            sneakyLink.setPosition(.7);
-            sneakyRink.setPosition(.3);
-            sleep(1000);
-            sneakyLink.setPosition(1); // 1 is rest pos
-            sneakyRink.setPosition(0); // 0 is rest pos
-            sleep(50);
-            intake.setPower(1);
-            sleep(300);
-            intake.setPower(0);
+            //sneakyLink.setPosition(.5);
+            //sneakyRink.setPosition(.5);
+            sleep(350);
+            intake.setPower(-1);
+            sleep(650);
+            intake.setPower(-1);
+            sleep(400);
+
+//            Actions.runBlocking(drive.actionBuilder(drive.pose)
+//            .strafeTo( new Vector2d(28,48))
+//                    .build());
+            Actions.runBlocking(drive.actionBuilder(drive.pose)
+                    .strafeTo( new Vector2d(28,48))
+                    .strafeToConstantHeading(new Vector2d(40,24))
+                    .strafeToLinearHeading(new Vector2d(100,24), Math.toRadians(180)).strafeToLinearHeading(new Vector2d(130,48.5),Math.toRadians(180)).afterTime(2, new Action(){
+
+                        @Override
+                        public boolean run(@NonNull TelemetryPacket telemetryPacket) {
+                            intake.setPower(0);
+                            return false;
+                        }
+                    }).afterTime(3, new Action(){
+
+                        @Override
+                        public boolean run(@NonNull TelemetryPacket telemetryPacket) {
+                            intake.setPower(-1);
+                            sleep((100));
+                            intake.setPower(0);
+                            backLeg.setPosition(.9);
+                            frontLeg.setPosition(.7);
+                            sleep(400);
+                            rightWinch.setTargetPosition(-800);
+                            rightWinch.setPower(.8);
+                            leftWinch.setTargetPosition(-800);
+                            leftWinch.setPower(.8);
+                            sleep(100);
+                            arch.setPosition(.363);
+                            sleep(100);
+                            hips.setPosition(.564);
+                            sleep(100);
+                            return false;
+                        }
+                    })
+                    .build());
+            //intake.setPower(0);
 
 
         } else {
             Actions.runBlocking(drive.actionBuilder(new Pose2d(12, 63, Math.toRadians(90)))
                     .strafeToLinearHeading(new Vector2d(15, 38), Math.toRadians(70))
-                    .strafeToConstantHeading(new Vector2d(13,46))
+                    .splineTo(new Vector2d(13,46),Math.toRadians(180))
                     .build());
         }
         drive.updatePoseEstimate();
@@ -163,27 +198,123 @@ public class ScottsBotsBlue extends LinearOpMode {
 
         if (zone == 1) {
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeTo(new Vector2d(14, 44))
-                    .strafeToLinearHeading(new Vector2d(40, 44), Math.toRadians(180))
+                //    .strafeTo(new Vector2d(14, 44))
+                 //   .splineTo(new Vector2d(40, 44), Math.toRadians(180))
 
                     .build());
         } else if (zone == 2) {
+//            Actions.runBlocking(drive.actionBuilder(drive.pose)
+//                    .strafeToConstantHeading(new Vector2d(25,24))
+//                    .strafeToLinearHeading(new Vector2d(100,24), Math.toRadians(180))
+//                    .build());
+
+//            Actions.runBlocking(drive.actionBuilder(drive.pose)
+//                    .strafeToLinearHeading(new Vector2d(133,48.5),Math.toRadians(180))
+//                    .build());
+            backLeg.setPosition(.7);  // .9 is closed pos
+            sleep(200);
+            frontLeg.setPosition(.46);
+            sleep(200);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(80,14))
-                    .strafeToConstantHeading(new Vector2d(117,-12))
+                    .strafeToConstantHeading(new Vector2d(130,49.5))
                     .build());
-            backLeg.setPosition(.9);
-            frontLeg.setPosition(.7);
-            sleep(400);
-            rightWinch.setTargetPosition(-900);
+            backLeg.setPosition(.85);  // .9 is closed pos
+            sleep(50);
+            frontLeg.setPosition(.6);
+            sleep(50);
+            hips.setPosition(.18);
+            sleep(200);
+            arch.setPosition(.69);
+            sleep(50);
+            rightWinch.setTargetPosition(-20);
             rightWinch.setPower(.8);
-            leftWinch.setTargetPosition(-900);
+            leftWinch.setTargetPosition(-20);
             leftWinch.setPower(.8);
+            hips.setPosition(.27);
+            backLeg.setPosition(.76);  // .9 is closed pos
+            frontLeg.setPosition(.52);
+            sneakyLink.setPosition(.65); //weirdo position la la lala la
+            sneakyRink.setPosition(.35);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(130,-22))
+                    .strafeToLinearHeading(new Vector2d(100,25.5), Math.toRadians(180))
+                    .strafeToLinearHeading(new Vector2d(40,25.5), Math.toRadians(180))
+                    .build());
+
+//            sneakyLink.setPosition(.72); //weirdo position la la lala la
+//            sneakyRink.setPosition(.28);
+            Actions.runBlocking(drive.actionBuilder(drive.pose)
+                    .strafeToLinearHeading(new Vector2d(21.5,50),Math.toRadians(180))//look here
+                  //  .strafeToLinearHeading(new Vector2d(20,50),Math.toRadians(180))
+                    .build());
+            sleep(800);
+            intake.setPower(-1);
+            sleep(300);
+
+            Actions.runBlocking(drive.actionBuilder(drive.pose)
+                    //.strafeTo( new Vector2d(28,48))
+                    .strafeToConstantHeading(new Vector2d(40,25))
+                    .strafeToLinearHeading(new Vector2d(100,25), Math.toRadians(180)).strafeToLinearHeading(new Vector2d(130,48.5),Math.toRadians(180)).afterTime(2, new Action(){
+//i hate this
+                        // please help me
+                        @Override
+                        public boolean run(@NonNull TelemetryPacket telemetryPacket) {
+                            intake.setPower(0);
+                            return false;
+                        }
+                    }).afterTime(3, new Action(){
+
+                        @Override
+                        public boolean run(@NonNull TelemetryPacket telemetryPacket) {
+                            intake.setPower(-1);
+                            sleep((100));
+                            intake.setPower(0);
+                            backLeg.setPosition(.9);
+                            frontLeg.setPosition(.7);
+                            sleep(400);
+                            rightWinch.setTargetPosition(-800);
+                            rightWinch.setPower(.8);
+                            leftWinch.setTargetPosition(-800);
+                            leftWinch.setPower(.8);
+                            sleep(100);
+                            arch.setPosition(.363);
+                            sleep(100);
+                          //  hips.setPosition(.564);
+                            sleep(100);
+                            return false;
+                        }
+                    })
                     .build());
 
 
+//            Actions.runBlocking(drive.actionBuilder(drive.pose) start
+//                    .strafeTo( new Vector2d(28,48))
+//                    .build());
+//            intake.setPower(0);
+//
+//            Actions.runBlocking(drive.actionBuilder(drive.pose)
+//            .strafeToConstantHeading(new Vector2d(25,26))
+//                    .strafeToLinearHeading(new Vector2d(100,26), Math.toRadians(180))
+//                    .build());
+//
+//            backLeg.setPosition(.9);
+//            frontLeg.setPosition(.7);
+//            sleep(400);
+//            rightWinch.setTargetPosition(-800);
+//            rightWinch.setPower(.8);
+//            leftWinch.setTargetPosition(-800);
+//            leftWinch.setPower(.8);
+//            arch.setPosition(.363);
+//            Actions.runBlocking(drive.actionBuilder(drive.pose)
+//                    .strafeToLinearHeading(new Vector2d(133,50),Math.toRadians(180))
+//                    .build());
+//            backLeg.setPosition(.7);  // .9 is closed pos
+//            sleep(200);
+//            frontLeg.setPosition(.46);
+//            sleep(200);
+//            Actions.runBlocking(drive.actionBuilder(drive.pose)
+//                    .strafeToConstantHeading(new Vector2d(130,49.5))
+//                    .build());
+//
 
         } else Actions.runBlocking(drive.actionBuilder(drive.pose)
                 .strafeToLinearHeading(new Vector2d(37, 38), Math.toRadians(180))
@@ -196,6 +327,37 @@ public class ScottsBotsBlue extends LinearOpMode {
 
         }
 
+        if(zone == 1){
+
+        }
+        else if( zone == 2){
+            backLeg.setPosition(.7);  // .9 is closed pos
+            sleep(200);
+            frontLeg.setPosition(.46);
+            sleep(200);
+            Actions.runBlocking(drive.actionBuilder(drive.pose)
+                    .strafeToConstantHeading(new Vector2d(130,49.5))
+                    .build());
+            backLeg.setPosition(.85);  // .9 is closed pos
+            sleep(50);
+            frontLeg.setPosition(.6);
+            sleep(50);
+            //  hips.setPosition(.18);
+            // sleep(200);
+            arch.setPosition(.69);
+            sleep(50);
+            rightWinch.setTargetPosition(-20);
+            rightWinch.setPower(.8);
+            leftWinch.setTargetPosition(-20);
+            leftWinch.setPower(.8);
+            // hips.setPosition(.27);
+            backLeg.setPosition(.76);  // .9 is closed pos
+            frontLeg.setPosition(.52);
+            sneakyLink.setPosition(.68); //weirdo position la la lala la
+            sneakyRink.setPosition(.32);
+        }
+        else
+
         //PARK
         Actions.runBlocking(drive.actionBuilder(drive.pose)
                 .strafeTo(new Vector2d(40, 64))
@@ -203,6 +365,7 @@ public class ScottsBotsBlue extends LinearOpMode {
                 .build());
 
     }
+
 
 
 

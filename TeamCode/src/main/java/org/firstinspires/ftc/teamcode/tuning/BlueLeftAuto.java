@@ -114,7 +114,33 @@ public class BlueLeftAuto extends LinearOpMode {
         //Drive to SPIke Mark
         if (zone == 1) {
             Actions.runBlocking(drive.actionBuilder(new Pose2d(12.00, 63, Math.toRadians(90)))
-                    .strafeToLinearHeading(new Vector2d(10, 34), Math.toRadians(110)).build());
+                    .strafeToLinearHeading(new Vector2d(10, 34), Math.toRadians(110))
+                    .strafeTo(new Vector2d(14, 47))
+                    .strafeToLinearHeading(new Vector2d(14, 32), Math.toRadians(180))
+                    .build());
+            backLeg.setPosition(.9);
+            frontLeg.setPosition(.7);
+            sleep(300);
+            rightWinch.setTargetPosition(-1000);
+            rightWinch.setPower(.8);
+            leftWinch.setTargetPosition(-1000);
+            leftWinch.setPower(.8);
+            sleep(1000);
+            arch.setPosition(.363);
+            Actions.runBlocking(drive.actionBuilder(drive.pose)
+                    .strafeToConstantHeading(new Vector2d(45,35))
+                    .build());
+            sleep(300);
+            hips.setPosition(.27);
+            backLeg.setPosition(.62);  // .9 is closed pos
+            frontLeg.setPosition(.4);
+            sleep(300);
+            Actions.runBlocking(drive.actionBuilder(drive.pose)
+                    .strafeToConstantHeading(new Vector2d(42,64))
+                    .strafeToConstantHeading(new Vector2d(-65,64))
+                    .build());
+
+
         } else if (zone == 2) {
             Actions.runBlocking(drive.actionBuilder(new Pose2d(12.00, 63, Math.toRadians(90)))
                     .strafeTo(new Vector2d(13, 35)).build());
