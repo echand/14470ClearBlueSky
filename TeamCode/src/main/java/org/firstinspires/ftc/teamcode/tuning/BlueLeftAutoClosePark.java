@@ -32,11 +32,10 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 
 import org.firstinspires.ftc.teamcode.MecanumDrive;
 import java.util.ArrayList;
-import java.util.Vector;
 
 
 @Autonomous
-public class BlueLeftAuto extends LinearOpMode {
+public class BlueLeftAutoClosePark extends LinearOpMode {
     OpenCvCamera camera;
 
     static final double FEET_PER_METER = 3.28084;
@@ -122,14 +121,14 @@ public class BlueLeftAuto extends LinearOpMode {
             backLeg.setPosition(.9);
             frontLeg.setPosition(.7);
             sleep(300);
-            rightWinch.setTargetPosition(-1000);
+            rightWinch.setTargetPosition(-800);
             rightWinch.setPower(.8);
-            leftWinch.setTargetPosition(-1000);
+            leftWinch.setTargetPosition(-800);
             leftWinch.setPower(.8);
             sleep(1000);
             arch.setPosition(.363);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(50, 35))
+                    .strafeToConstantHeading(new Vector2d(50,35))
                     .build());
             sleep(300);
             hips.setPosition(.27);
@@ -137,7 +136,7 @@ public class BlueLeftAuto extends LinearOpMode {
             frontLeg.setPosition(.4);
             sleep(300);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(42, 64))
+                    .strafeToConstantHeading(new Vector2d(38,14))
                     .build());
 
             backLeg.setPosition(.85);  // .9 is closed pos
@@ -162,7 +161,7 @@ public class BlueLeftAuto extends LinearOpMode {
                     .strafeTo(new Vector2d(11, 34))
                     .strafeTo(new Vector2d(11, 40))
                     .turnTo(Math.toRadians(180))
-                    .strafeTo(new Vector2d(42, 39))
+                    .strafeTo(new Vector2d(44, 40))
                     .build());
             backLeg.setPosition(.9);
             frontLeg.setPosition(.7);
@@ -174,7 +173,7 @@ public class BlueLeftAuto extends LinearOpMode {
             sleep(1000);
             arch.setPosition(.363);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(51.6, 44))
+                    .strafeToConstantHeading(new Vector2d(51,44))
                     .build());
             sleep(300);
             hips.setPosition(.27);
@@ -182,7 +181,7 @@ public class BlueLeftAuto extends LinearOpMode {
             frontLeg.setPosition(.4);
             sleep(300);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(47, 66))
+                    .strafeToConstantHeading(new Vector2d(47,30))
                     .build());
 
             backLeg.setPosition(.85);  // .9 is closed pos
@@ -202,8 +201,8 @@ public class BlueLeftAuto extends LinearOpMode {
             frontLeg.setPosition(.52);
         } else {
             Actions.runBlocking(drive.actionBuilder(new Pose2d(12.00, 63, Math.toRadians(90)))
-                            .strafeToLinearHeading(new Vector2d(8, 32), Math.toRadians(65))
-                            .strafeToLinearHeading(new Vector2d(-2, 50), Math.toRadians(65))//                    .strafeToConstantHeading(new Vector2d(15, 38.51))
+                    .strafeToLinearHeading(new Vector2d(8, 32), Math.toRadians(65))
+                    .strafeToLinearHeading(new Vector2d(-2, 50), Math.toRadians(65))//                    .strafeToConstantHeading(new Vector2d(15, 38.51))
 //                    .strafeToLinearHeading(new Vector2d(8.83, 33.33), Math.toRadians(0))
 //                    .strafeToConstantHeading(new Vector2d(14, 35.33))
                     .build());
@@ -219,33 +218,28 @@ public class BlueLeftAuto extends LinearOpMode {
         if (zone == 1) {
             sleep(1000);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeTo(new Vector2d(48, 66))
-                    .strafeTo(new Vector2d(48, 66))
-                    .turnTo(Math.toRadians(270))
-                    .strafeTo(new Vector2d(36, 68)) // x down moves it left, y down moves it up
+
+//                    .strafeTo(new Vector2d(43, 66))
+                    .strafeToLinearHeading(new Vector2d(38,13), Math.toRadians(270))
+                                    .strafeTo(new Vector2d(20,17))
+//                    .strafeTo(new Vector2d(36,65)) // x down moves it left, y down moves it up
                     //.strafeToLinearHeading(new Vector2d(14, 34), Math.toRadians(180))
 
                     .build());
             sleep(100);
         } else if (zone == 2) {
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    // .strafeTo(new Vector2d(45, 30))
-                    .strafeToLinearHeading(new Vector2d(45, 66), Math.toRadians(270))
-                    .strafeTo(new Vector2d(45, 66))
-                    .strafeTo(new Vector2d(35, 60))
-
+                   // .strafeTo(new Vector2d(45, 30))
+                    .strafeToLinearHeading(new Vector2d(45, 30), Math.toRadians(270))
+                    .strafeTo(new Vector2d(45, 40))
+                            .strafeTo(new Vector2d(35,40))
 
                     .build());
-        } else {
-            Actions.runBlocking(drive.actionBuilder(drive.pose)
+        } else  Actions.runBlocking(drive.actionBuilder(drive.pose)
                 .strafeToLinearHeading(new Vector2d(-2, 50), Math.toRadians(180))
-                        .strafeToConstantHeading(new Vector2d(12,45))
+                .strafeToConstantHeading(new Vector2d(12,45))
 
                 .build());
-
-        }
-
-
         drive.updatePoseEstimate();
         telemetry.addLine("Pose" + drive.pose.position);
         telemetry.addLine("HEading" + Math.toDegrees(drive.pose.heading.log()));
@@ -253,7 +247,7 @@ public class BlueLeftAuto extends LinearOpMode {
 
 
         if(zone == 1){
-        sleep(100);
+            sleep(100);
 //            backLeg.setPosition(.9);
 //            frontLeg.setPosition(.7);
 //            sleep(300);
@@ -273,21 +267,21 @@ public class BlueLeftAuto extends LinearOpMode {
 //            sleep(300);
         }
         else if(zone == 2 ){
-            sleep(300);
+            sleep(200);
         }
         else{
 
             backLeg.setPosition(.9);
             frontLeg.setPosition(.7);
             sleep(300);
-            rightWinch.setTargetPosition(-1000);
+            rightWinch.setTargetPosition(-800);
             rightWinch.setPower(.8);
-            leftWinch.setTargetPosition(-1000);
+            leftWinch.setTargetPosition(-800);
             leftWinch.setPower(.8);
             sleep(1000);
             arch.setPosition(.363);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-           .strafeToConstantHeading(new Vector2d(28,62))
+                    .strafeToConstantHeading(new Vector2d(29,59))
                     .build());
             sleep(300);
             hips.setPosition(.27);
@@ -309,10 +303,12 @@ public class BlueLeftAuto extends LinearOpMode {
 //                    .strafeToConstantHeading(new Vector2d(40,35))
 //                    .build());
 
-         sleep(100);
+            sleep(100);
         }
         else if(zone == 2 ){
-            sleep(300);
+            sleep(200);
+
+
         }
         else{
             Actions.runBlocking(drive.actionBuilder(drive.pose)
@@ -347,14 +343,13 @@ public class BlueLeftAuto extends LinearOpMode {
             sleep(100);
         }
         else if(zone == 2 ){
-            sleep(300);
+            sleep(200);
         }
         else{
-            sleep(100);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeTo(new Vector2d(25, 72))
+                    .strafeTo(new Vector2d(25, 22))
                     .turnTo(Math.toRadians(270))
-                    .strafeToConstantHeading(new Vector2d(16,68))//when facing the opposite direction as start x and y flip
+                    .strafeToConstantHeading(new Vector2d(12,26))//
                     .build());
         }
 
