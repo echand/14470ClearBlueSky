@@ -238,7 +238,7 @@ public class DiddyTrump extends LinearOpMode {
             Actions.runBlocking(drive.actionBuilder(drive.pose)
                     .strafeToConstantHeading(new Vector2d(25,-62))
                     .build());
-            sleep(200);
+            sleep(201);
             backLeg.setPosition(.85);  // .9 is closed pos
             sleep(50);
             frontLeg.setPosition(.6);
