@@ -141,7 +141,7 @@ public class TeleOpFieldCentric extends LinearOpMode{
                 sleep(50);
                 frontLeg.setPosition(.6);
                 sleep(50);
-                hips.setPosition(.14);
+                hips.setPosition(.18);
                 sleep(200);
                 arch.setPosition(.69);
                 sleep(50);
@@ -160,7 +160,7 @@ public class TeleOpFieldCentric extends LinearOpMode{
 //            if (gamepad2.y) {
 //                arch.setPosition(.363);
 //            }
-
+            telemetry.addLine("IMU: " + Math.toDegrees(drive.getHeading()));
             if(gamepad2.x){
                 shooter.setPower(-1);
             }
@@ -169,8 +169,8 @@ public class TeleOpFieldCentric extends LinearOpMode{
             }
 
             if(gamepad1.right_bumper){
-                sneakyLink.setPosition(.54);
-                sneakyRink.setPosition(.46);
+                sneakyLink.setPosition(.62);
+                sneakyRink.setPosition(.38);
             }
             if(gamepad1.dpad_down){
                 sneakyLink.setPosition(.7);
@@ -223,7 +223,10 @@ public class TeleOpFieldCentric extends LinearOpMode{
                 rightWinch.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 leftWinch.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             }
-
+            if(gamepad1.dpad_right){
+                sneakyLink.setPosition(.79); //weirdo position la la lala la
+                sneakyRink.setPosition(.21);
+            }
 
 
 //            if(gamepad2.dpad_up){

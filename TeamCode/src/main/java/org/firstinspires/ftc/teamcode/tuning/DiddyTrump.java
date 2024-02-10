@@ -1,5 +1,3 @@
-
-
 package org.firstinspires.ftc.teamcode.tuning;
 
 import com.acmerobotics.dashboard.FtcDashboard;
@@ -113,18 +111,19 @@ public class DiddyTrump extends LinearOpMode {
         //Actions.runBlocking(drive.actionBuilder(new Pose2d(12.00, 63, Math.toRadians(90))).strafeTo(new Vector2d(12,30)).build());
         //Drive to SPIke Mark
         if (zone == 1) {
-            Actions.runBlocking(drive.actionBuilder(new Pose2d(12, -63, Math.toRadians(270)))
-                    .strafeToConstantHeading(new Vector2d(9, -44.00))
-                    .strafeToLinearHeading(new Vector2d(5.83, -37.43), Math.toRadians(330))
-                    .strafeToConstantHeading(new Vector2d(-1, -35.33))
-
+            Actions.runBlocking(drive.actionBuilder(new Pose2d(12.00, -63, Math.toRadians(-90)))
+                    .strafeTo(new Vector2d(-6, -60))
+                    .strafeToLinearHeading(new Vector2d(-40,-24), Math.toRadians(0))// y down is more up
+                    .strafeToLinearHeading(new Vector2d(-6, -60), Math.toRadians(270))
                     .build());
+
         } else if (zone == 2) {
             Actions.runBlocking(drive.actionBuilder(new Pose2d(12, -63, Math.toRadians(270)))
-                    .strafeToConstantHeading(new Vector2d(13, -34)).build());
+                    .strafeToConstantHeading(new Vector2d(12, -33))
+                    .build());
         } else {
             Actions.runBlocking(drive.actionBuilder(new Pose2d(12, -63, Math.toRadians(270)))
-                    .strafeToLinearHeading(new Vector2d(15, -38), Math.toRadians(240))
+                    .strafeToConstantHeading(new Vector2d(2, -38))
                     .build());
         }
         drive.updatePoseEstimate();
@@ -139,23 +138,34 @@ public class DiddyTrump extends LinearOpMode {
 
         if (zone == 1) {
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(5, -40.33))
-                    .strafeToLinearHeading(new Vector2d(-1, -40), Math.toRadians(180))
-                    .strafeToConstantHeading(new Vector2d(26,-50))
-
+                    .strafeToConstantHeading(new Vector2d(1,-48))
                     .build());
+                    sleep(400);
+            Actions.runBlocking(drive.actionBuilder(drive.pose)
+                    .turn(Math.toRadians(-90))
+                    .build());
+            sleep(200);
+
+
         } else if (zone == 2) {
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(-10, -44))
-                    .strafeToLinearHeading(new Vector2d(-12, -50), Math.toRadians(180))
-
+                    .strafeToConstantHeading(new Vector2d(1,-48))
                     .build());
+            sleep(400);
+            Actions.runBlocking(drive.actionBuilder(drive.pose)
+                    .turn(Math.toRadians(-90))
+                    .build());
+            sleep(200);
         }
         else {
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                            .strafeToConstantHeading(new Vector2d(15,-46))
-                    .strafeToLinearHeading(new Vector2d(15, -50), Math.toRadians(180))
+                    .strafeToConstantHeading(new Vector2d(1,-48))
                     .build());
+            sleep(400);
+            Actions.runBlocking(drive.actionBuilder(drive.pose)
+                    .turnTo(Math.toRadians(180))
+                    .build());
+            sleep(200);
         }
 
         drive.updatePoseEstimate();
@@ -175,12 +185,11 @@ public class DiddyTrump extends LinearOpMode {
             sleep(1000);
             arch.setPosition(.363);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(38,-48))
+                    .strafeToConstantHeading(new Vector2d(33,-69))
                     .build());
-            sleep(300);
-            backLeg.setPosition(.62);  // .9 is closed pos
-            frontLeg.setPosition(.4);
-            sleep(300);
+            backLeg.setPosition(.76);  // .9 is closed pos
+            sleep(50);
+            frontLeg.setPosition(.52);
         }
         else if(zone == 2){
             backLeg.setPosition(.9);
@@ -193,12 +202,11 @@ public class DiddyTrump extends LinearOpMode {
             sleep(1000);
             arch.setPosition(.363);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(14,-52))
+                    .strafeToConstantHeading(new Vector2d(33,-62))
                     .build());
-            sleep(300);
-            backLeg.setPosition(.62);  // .9 is closed pos
-            frontLeg.setPosition(.4);
-            sleep(300);
+            backLeg.setPosition(.76);  // .9 is closed pos
+            sleep(50);
+            frontLeg.setPosition(.52);
         }
         else {
             backLeg.setPosition(.9);
@@ -211,12 +219,11 @@ public class DiddyTrump extends LinearOpMode {
             sleep(1000);
             arch.setPosition(.363);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(55,-52))
+                    .strafeToConstantHeading(new Vector2d(33,-55))
                     .build());
-            sleep(300);
-            backLeg.setPosition(.62);  // .9 is closed pos
-            frontLeg.setPosition(.4);
-            sleep(300);
+            backLeg.setPosition(.76);  // .9 is closed pos
+            sleep(50);
+            frontLeg.setPosition(.52);
         }
 
 
@@ -229,81 +236,75 @@ public class DiddyTrump extends LinearOpMode {
 
         if(zone == 1){
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(30,-48))
+                    .strafeToConstantHeading(new Vector2d(25,-62))
                     .build());
-
-            sleep(300);
+            sleep(200);
             backLeg.setPosition(.85);  // .9 is closed pos
-            sleep(300);
+            sleep(50);
             frontLeg.setPosition(.6);
-            sleep(300);
-            hips.setPosition(.14);
-            sleep(100);
+            sleep(50);
+            //  hips.setPosition(.18);
+            // sleep(200);
             arch.setPosition(.69);
-            sleep(100);
-            leftWinch.setTargetPosition(-20);
-            leftWinch.setPower(.3);
+            sleep(50);
             rightWinch.setTargetPosition(-20);
-            rightWinch.setPower(.3);
-            sleep(1000);
-            hips.setPosition(.22);
-            sleep(200);
+            rightWinch.setPower(.8);
+            leftWinch.setTargetPosition(-20);
+            leftWinch.setPower(.8);
+            // hips.setPosition(.27);
+            sleep(300);
             backLeg.setPosition(.76);  // .9 is closed pos
-            sleep(200);
             frontLeg.setPosition(.52);
-            sleep(200);
+            sleep(300);
         }
         else if(zone == 2){
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(0,-52))
+                    .strafeToConstantHeading(new Vector2d(25,-62))
                     .build());
-
-            sleep(300);
+            sleep(200);
             backLeg.setPosition(.85);  // .9 is closed pos
-            sleep(300);
+            sleep(50);
             frontLeg.setPosition(.6);
-            sleep(300);
-            hips.setPosition(.14);
-            sleep(100);
+            sleep(50);
+            //  hips.setPosition(.18);
+            // sleep(200);
             arch.setPosition(.69);
-            sleep(100);
-            leftWinch.setTargetPosition(-20);
-            leftWinch.setPower(.3);
+            sleep(50);
             rightWinch.setTargetPosition(-20);
-            rightWinch.setPower(.3);
-            sleep(1000);
-            hips.setPosition(.22);
-            sleep(200);
+            rightWinch.setPower(.8);
+            leftWinch.setTargetPosition(-20);
+            leftWinch.setPower(.8);
+            // hips.setPosition(.27);
+            sleep(300);
             backLeg.setPosition(.76);  // .9 is closed pos
-            sleep(200);
             frontLeg.setPosition(.52);
-            sleep(200);
+            sleep(300);
+
         }
         else{
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(50,-52))
+                    .strafeToConstantHeading(new Vector2d(25,-52))
                     .build());
-
-            sleep(300);
+            sleep(200);
             backLeg.setPosition(.85);  // .9 is closed pos
-            sleep(300);
+            sleep(50);
             frontLeg.setPosition(.6);
-            sleep(300);
-            hips.setPosition(.14);
-            sleep(100);
+            sleep(50);
+            //  hips.setPosition(.18);
+            // sleep(200);
             arch.setPosition(.69);
-            sleep(100);
-            leftWinch.setTargetPosition(-20);
-            leftWinch.setPower(.3);
+            sleep(50);
             rightWinch.setTargetPosition(-20);
-            rightWinch.setPower(.3);
-            sleep(1000);
-            hips.setPosition(.22);
-            sleep(200);
+            rightWinch.setPower(.8);
+            leftWinch.setTargetPosition(-20);
+            leftWinch.setPower(.8);
+            // hips.setPosition(.27);
+            sleep(300);
             backLeg.setPosition(.76);  // .9 is closed pos
-            sleep(200);
             frontLeg.setPosition(.52);
-            sleep(200);
+            sleep(300);
+
+
         }
 
         drive.updatePoseEstimate();
@@ -312,21 +313,28 @@ public class DiddyTrump extends LinearOpMode {
         telemetry.update();
 
 
-       // PARK
+        // PARK
         if(zone == 2) {
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeTo(new Vector2d(0, -27))
+                    .strafeTo(new Vector2d(20, -38))
+                    .turn(Math.toRadians(-90))
+                    .strafeTo(new Vector2d(5, -38))
                     .build());
         }
         else if(zone == 1){
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeTo(new Vector2d(35, -5))
+                    .strafeTo(new Vector2d(20, -37))
+                    .turn(Math.toRadians(-90))
+                    .strafeTo(new Vector2d(5, -37))
                     .build());
         }
         else{
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeTo(new Vector2d(55, -27))
+                    .strafeTo(new Vector2d(20, -38))
+                    .turnTo(Math.toRadians(90))
+                    .strafeTo(new Vector2d(5, -38))
                     .build());
+
         }
 
     }
@@ -340,5 +348,3 @@ public class DiddyTrump extends LinearOpMode {
 
 
 }
-
-
