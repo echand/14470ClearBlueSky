@@ -11,14 +11,15 @@ import com.acmerobotics.roadrunner.ftc.OverflowEncoder;
 import com.acmerobotics.roadrunner.ftc.PositionVelocityPair;
 import com.acmerobotics.roadrunner.ftc.RawEncoder;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 @Config
 public final class ThreeDeadWheelLocalizer implements Localizer {
     public static class Params {
-        public double par0YTicks = 12437.998332659477; // y position of the first parallel encoder (in tick units)
-        public double par1YTicks = -11554.359572923277; // y position of the second parallel encoder (in tick units)
-        public double perpXTicks = -3.892689745094758; // x position of the perpendicular encoder (in tick units)
+        public double par0YTicks = 12204.398263734662; // y position of the first parallel encoder (in tick units)
+        public double par1YTicks = -11670.201557346554; // y position of the second parallel encoder (in tick units)
+        public double perpXTicks = 1545.6684619612715; // x position of the perpendicular encoder (in tick units)
     }
 
     public static Params PARAMS = new Params();
@@ -33,6 +34,8 @@ public final class ThreeDeadWheelLocalizer implements Localizer {
         par0 = new OverflowEncoder(new RawEncoder(hardwareMap.get(DcMotorEx.class, "par0")));
         par1 = new OverflowEncoder(new RawEncoder(hardwareMap.get(DcMotorEx.class, "par1")));
         perp = new OverflowEncoder(new RawEncoder(hardwareMap.get(DcMotorEx.class, "perp")));
+
+        perp.setDirection(DcMotorSimple.Direction.REVERSE);
 
         lastPar0Pos = par0.getPositionAndVelocity().position;
         lastPar1Pos = par1.getPositionAndVelocity().position;
@@ -72,7 +75,7 @@ public final class ThreeDeadWheelLocalizer implements Localizer {
 
         lastPar0Pos = par0PosVel.position;
         lastPar1Pos = par1PosVel.position;
-        lastPerpPos = perpPosVel.position;
+        lastPerpPos = perpPosVel.position; // todo
 
         return twist;
     }

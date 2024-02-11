@@ -111,10 +111,8 @@ public class DiddyTrump extends LinearOpMode {
         //Actions.runBlocking(drive.actionBuilder(new Pose2d(12.00, 63, Math.toRadians(90))).strafeTo(new Vector2d(12,30)).build());
         //Drive to SPIke Mark
         if (zone == 1) {
-            Actions.runBlocking(drive.actionBuilder(new Pose2d(12.00, -63, Math.toRadians(-90)))
-                    .strafeTo(new Vector2d(-6, -60))
-                    .strafeToLinearHeading(new Vector2d(-40,-24), Math.toRadians(0))// y down is more up
-                    .strafeToLinearHeading(new Vector2d(-6, -60), Math.toRadians(270))
+            Actions.runBlocking(drive.actionBuilder(new Pose2d(12.00, -63, Math.toRadians(270)))
+                    .splineTo(new Vector2d(2,-38), Math.toRadians(90))// y down is more up
                     .build());
 
         } else if (zone == 2) {
@@ -123,7 +121,7 @@ public class DiddyTrump extends LinearOpMode {
                     .build());
         } else {
             Actions.runBlocking(drive.actionBuilder(new Pose2d(12, -63, Math.toRadians(270)))
-                    .strafeToConstantHeading(new Vector2d(2, -38))
+                    .strafeToConstantHeading(new Vector2d(22, -38))
                     .build());
         }
         drive.updatePoseEstimate();
@@ -138,28 +136,28 @@ public class DiddyTrump extends LinearOpMode {
 
         if (zone == 1) {
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(1,-48))
+                    .strafeToConstantHeading(new Vector2d(23,-48))
                     .build());
                     sleep(400);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .turn(Math.toRadians(-90))
+                    .turnTo(Math.toRadians(180))
                     .build());
             sleep(200);
 
 
         } else if (zone == 2) {
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(1,-48))
+                    .strafeToConstantHeading(new Vector2d(23,-48))
                     .build());
             sleep(400);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .turn(Math.toRadians(-90))
+                    .turnTo(Math.toRadians(-180))
                     .build());
             sleep(200);
         }
         else {
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(1,-48))
+                    .strafeToConstantHeading(new Vector2d(23,-48))
                     .build());
             sleep(400);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
@@ -185,7 +183,7 @@ public class DiddyTrump extends LinearOpMode {
             sleep(1000);
             arch.setPosition(.363);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(33,-69))
+                    .strafeToConstantHeading(new Vector2d(55,-33))
                     .build());
             backLeg.setPosition(.76);  // .9 is closed pos
             sleep(50);
@@ -202,7 +200,7 @@ public class DiddyTrump extends LinearOpMode {
             sleep(1000);
             arch.setPosition(.363);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(33,-62))
+                    .strafeToConstantHeading(new Vector2d(55,-36))
                     .build());
             backLeg.setPosition(.76);  // .9 is closed pos
             sleep(50);
@@ -219,7 +217,7 @@ public class DiddyTrump extends LinearOpMode {
             sleep(1000);
             arch.setPosition(.363);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(33,-55))
+                    .strafeToConstantHeading(new Vector2d(55,-40))
                     .build());
             backLeg.setPosition(.76);  // .9 is closed pos
             sleep(50);
@@ -236,7 +234,7 @@ public class DiddyTrump extends LinearOpMode {
 
         if(zone == 1){
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(25,-62))
+                    .strafeToConstantHeading(new Vector2d(48,-62))
                     .build());
             sleep(201);
             backLeg.setPosition(.85);  // .9 is closed pos
@@ -259,7 +257,7 @@ public class DiddyTrump extends LinearOpMode {
         }
         else if(zone == 2){
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(25,-62))
+                    .strafeToConstantHeading(new Vector2d(48,-62))
                     .build());
             sleep(200);
             backLeg.setPosition(.85);  // .9 is closed pos
@@ -283,7 +281,7 @@ public class DiddyTrump extends LinearOpMode {
         }
         else{
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(25,-52))
+                    .strafeToConstantHeading(new Vector2d(48,-62))
                     .build());
             sleep(200);
             backLeg.setPosition(.85);  // .9 is closed pos
@@ -316,23 +314,23 @@ public class DiddyTrump extends LinearOpMode {
         // PARK
         if(zone == 2) {
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeTo(new Vector2d(20, -38))
-                    .turn(Math.toRadians(-90))
-                    .strafeTo(new Vector2d(5, -38))
+                    .strafeTo(new Vector2d(50, -55))
+                    .turnTo(Math.toRadians(90))
+                    .strafeTo(new Vector2d(56, -55))
                     .build());
         }
         else if(zone == 1){
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeTo(new Vector2d(20, -37))
-                    .turn(Math.toRadians(-90))
-                    .strafeTo(new Vector2d(5, -37))
+                    .strafeTo(new Vector2d(50, -55))
+                    .turnTo(Math.toRadians(90))
+                    .strafeTo(new Vector2d(56, -55))
                     .build());
         }
         else{
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeTo(new Vector2d(20, -38))
+                    .strafeTo(new Vector2d(50, -55))
                     .turnTo(Math.toRadians(90))
-                    .strafeTo(new Vector2d(5, -38))
+                    .strafeTo(new Vector2d(56, -55))
                     .build());
 
         }
