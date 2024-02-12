@@ -82,7 +82,7 @@ public class BlueLeftPlus4 extends LinearOpMode {
         drive = new MecanumDrive(hardwareMap, new Pose2d(12.00, 63, Math.toRadians(90)));
         TeamPropDetector.startPropDetection(hardwareMap, telemetry);
         drive.setTelemetry(telemetry);
-
+//sup
 
         rightWinch.setDirection(DcMotorSimple.Direction.REVERSE);
         leftWinch.setDirection((DcMotorSimple.Direction.FORWARD));
