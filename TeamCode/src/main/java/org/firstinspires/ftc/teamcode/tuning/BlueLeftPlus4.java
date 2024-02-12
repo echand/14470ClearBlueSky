@@ -258,7 +258,7 @@ public class BlueLeftPlus4 extends LinearOpMode {
             backLeg.setPosition(.81);
             frontLeg.setPosition(.61);
 //            sleep(300);
-//            hips.setPosition(.18);
+//            hips.setPosition(.18); hips hips hips
             sleep(200);
             rightWinch.setTargetPosition(-1400);
             rightWinch.setPower(1);
