@@ -22,6 +22,7 @@ import com.qualcomm.robotcore.util.Range;
 
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.teamcode.tuning.TeamPropDetector;
 import org.openftc.apriltag.AprilTagDetection;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
@@ -111,18 +112,133 @@ public class DiddyTrump extends LinearOpMode {
         //Actions.runBlocking(drive.actionBuilder(new Pose2d(12.00, 63, Math.toRadians(90))).strafeTo(new Vector2d(12,30)).build());
         //Drive to SPIke Mark
         if (zone == 1) {
-            Actions.runBlocking(drive.actionBuilder(new Pose2d(12.00, -63, Math.toRadians(270)))
-                    .splineTo(new Vector2d(2,-38), Math.toRadians(90))// y down is more up
+            Actions.runBlocking(drive.actionBuilder(new Pose2d(12, -63, Math.toRadians(270)))
+                    .strafeTo(new Vector2d(10.55, -44.21))
+                    .strafeToLinearHeading(new Vector2d(2.43, -31.23), Math.toRadians(300.00))
+                    .strafeToConstantHeading(new Vector2d(12, -50))
                     .build());
+            backLeg.setPosition(.82);
+            frontLeg.setPosition(.62);
+            sleep(300);
+            rightWinch.setTargetPosition(-1000);
+            rightWinch.setPower(.8);
+            leftWinch.setTargetPosition(-1000);
+            leftWinch.setPower(.8);
+            sleep(1000);
+            arch.setPosition(.363);
 
+            Actions.runBlocking(drive.actionBuilder(drive.pose)
+                    .strafeToLinearHeading(new Vector2d(52.5, -27.99),  Math.toRadians(180.00))
+                    .build());
+            backLeg.setPosition(.76);  // .9 is closed pos
+            sleep(50);
+            frontLeg.setPosition(.52);
+            sleep(300);
+            Actions.runBlocking(drive.actionBuilder(drive.pose)
+                    .strafeToLinearHeading(new Vector2d(50.5, -27.99),  Math.toRadians(180.00))
+                    .build());
+            backLeg.setPosition(.85);  // .9 is closed pos
+            sleep(50);
+            frontLeg.setPosition(.6);
+            sleep(50);
+            //  hips.setPosition(.18);
+            // sleep(200);
+            arch.setPosition(.69);
+            sleep(50);
+            rightWinch.setTargetPosition(-20);
+            rightWinch.setPower(.8);
+            leftWinch.setTargetPosition(-20);
+            leftWinch.setPower(.8);
+            // hips.setPosition(.27);
+            sleep(300);
+            backLeg.setPosition(.76);  // .9 is closed pos
+            frontLeg.setPosition(.52);
+            sleep(300);
         } else if (zone == 2) {
             Actions.runBlocking(drive.actionBuilder(new Pose2d(12, -63, Math.toRadians(270)))
-                    .strafeToConstantHeading(new Vector2d(12, -33))
+                    .strafeTo(new Vector2d(12, -33))
+                    .strafeTo(new Vector2d(12, -38))
                     .build());
+            backLeg.setPosition(.82);
+            frontLeg.setPosition(.62);
+            sleep(300);
+            rightWinch.setTargetPosition(-1000);
+            rightWinch.setPower(.8);
+            leftWinch.setTargetPosition(-1000);
+            leftWinch.setPower(.8);
+            sleep(1000);
+            arch.setPosition(.363);
+            Actions.runBlocking(drive.actionBuilder(drive.pose)
+                    .strafeToLinearHeading(new Vector2d(52.5, -35.7),  Math.toRadians(180.00))
+                    .build());
+            backLeg.setPosition(.76);  // .9 is closed pos
+            sleep(50);
+            frontLeg.setPosition(.52);
+            sleep(300);
+            Actions.runBlocking(drive.actionBuilder(drive.pose)
+                    .strafeToLinearHeading(new Vector2d(49, -27.99),  Math.toRadians(180.00))
+                    .build());
+            backLeg.setPosition(.85);  // .9 is closed pos
+            sleep(50);
+            frontLeg.setPosition(.6);
+            sleep(50);
+            //  hips.setPosition(.18);
+            // sleep(200);
+            arch.setPosition(.69);
+            sleep(50);
+            rightWinch.setTargetPosition(-20);
+            rightWinch.setPower(.8);
+            leftWinch.setTargetPosition(-20);
+            leftWinch.setPower(.8);
+            // hips.setPosition(.27);
+            sleep(300);
+            backLeg.setPosition(.76);  // .9 is closed pos
+            frontLeg.setPosition(.52);
+            sleep(300);
+            //intake.setPower(0);
         } else {
+
             Actions.runBlocking(drive.actionBuilder(new Pose2d(12, -63, Math.toRadians(270)))
-                    .strafeToConstantHeading(new Vector2d(22, -38))
+                    .strafeToConstantHeading(new Vector2d(23.53, -34.86))
+                    .strafeToConstantHeading(new Vector2d(23.53, -42))
                     .build());
+            backLeg.setPosition(.82);
+            frontLeg.setPosition(.62);
+            sleep(300);
+            rightWinch.setTargetPosition(-1000);
+            rightWinch.setPower(.8);
+            leftWinch.setTargetPosition(-1000);
+            leftWinch.setPower(.8);
+            sleep(1000);
+            arch.setPosition(.363);
+            Actions.runBlocking(drive.actionBuilder(drive.pose)
+                    .strafeToLinearHeading(new Vector2d(52.5, -42.19), Math.toRadians(180.00))
+                    .build());
+            backLeg.setPosition(.76);  // .9 is closed pos
+            sleep(50);
+            frontLeg.setPosition(.52);
+            sleep(300);
+            Actions.runBlocking(drive.actionBuilder(drive.pose)
+                    .strafeToLinearHeading(new Vector2d(50.5, -42.19), Math.toRadians(180.00))
+                    .build());
+            backLeg.setPosition(.85);  // .9 is closed pos
+            sleep(50);
+            frontLeg.setPosition(.6);
+            sleep(50);
+            //  hips.setPosition(.18);
+            // sleep(200);
+            arch.setPosition(.69);
+            sleep(50);
+            rightWinch.setTargetPosition(-20);
+            rightWinch.setPower(.8);
+            leftWinch.setTargetPosition(-20);
+            leftWinch.setPower(.8);
+            // hips.setPosition(.27);
+            sleep(300);
+            backLeg.setPosition(.76);  // .9 is closed pos
+            frontLeg.setPosition(.52);
+            sleep(300);
+
         }
         drive.updatePoseEstimate();
         telemetry.addLine("Pose" + drive.pose.position);
@@ -135,35 +251,22 @@ public class DiddyTrump extends LinearOpMode {
         //Drive to Backdrop
 
         if (zone == 1) {
+
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(23,-48))
+                    .strafeToLinearHeading(new Vector2d(49, -60), Math.toRadians(90))
                     .build());
-                    sleep(400);
-            Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .turnTo(Math.toRadians(180))
-                    .build());
-            sleep(200);
 
 
         } else if (zone == 2) {
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(23,-48))
+                    .strafeToLinearHeading(new Vector2d(49, -60), Math.toRadians(90))
                     .build());
-            sleep(400);
-            Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .turnTo(Math.toRadians(-180))
-                    .build());
-            sleep(200);
         }
         else {
+
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(23,-48))
+                    .strafeToLinearHeading(new Vector2d(49, -60), Math.toRadians(90))
                     .build());
-            sleep(400);
-            Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .turnTo(Math.toRadians(180))
-                    .build());
-            sleep(200);
         }
 
         drive.updatePoseEstimate();
@@ -173,55 +276,13 @@ public class DiddyTrump extends LinearOpMode {
 
         if(zone == 1){
 
-            backLeg.setPosition(.82);
-            frontLeg.setPosition(.62);
-            sleep(300);
-            rightWinch.setTargetPosition(-1000);
-            rightWinch.setPower(.8);
-            leftWinch.setTargetPosition(-1000);
-            leftWinch.setPower(.8);
-            sleep(1000);
-            arch.setPosition(.363);
-            Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(55,-33))
-                    .build());
-            backLeg.setPosition(.76);  // .9 is closed pos
-            sleep(50);
-            frontLeg.setPosition(.52);
+            sleep(200);
         }
         else if(zone == 2){
-            backLeg.setPosition(.82);
-            frontLeg.setPosition(.62);
-            sleep(300);
-            rightWinch.setTargetPosition(-1000);
-            rightWinch.setPower(.8);
-            leftWinch.setTargetPosition(-1000);
-            leftWinch.setPower(.8);
-            sleep(1000);
-            arch.setPosition(.363);
-            Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(55,-36))
-                    .build());
-            backLeg.setPosition(.76);  // .9 is closed pos
-            sleep(50);
-            frontLeg.setPosition(.52);
+            sleep(200);
         }
         else {
-            backLeg.setPosition(.82);
-            frontLeg.setPosition(.62);
-            sleep(300);
-            rightWinch.setTargetPosition(-1000);
-            rightWinch.setPower(.8);
-            leftWinch.setTargetPosition(-1000);
-            leftWinch.setPower(.8);
-            sleep(1000);
-            arch.setPosition(.363);
-            Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(55,-40))
-                    .build());
-            backLeg.setPosition(.76);  // .9 is closed pos
-            sleep(50);
-            frontLeg.setPosition(.52);
+            sleep(200);
         }
 
 
@@ -233,75 +294,14 @@ public class DiddyTrump extends LinearOpMode {
 
 
         if(zone == 1){
-            Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(48,-62))
-                    .build());
-            sleep(201);
-            backLeg.setPosition(.85);  // .9 is closed pos
-            sleep(50);
-            frontLeg.setPosition(.6);
-            sleep(50);
-            //  hips.setPosition(.18);
-            // sleep(200);
-            arch.setPosition(.69);
-            sleep(50);
-            rightWinch.setTargetPosition(-20);
-            rightWinch.setPower(.8);
-            leftWinch.setTargetPosition(-20);
-            leftWinch.setPower(.8);
-            // hips.setPosition(.27);
-            sleep(300);
-            backLeg.setPosition(.76);  // .9 is closed pos
-            frontLeg.setPosition(.52);
-            sleep(300);
+            sleep(200);
         }
         else if(zone == 2){
-            Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(48,-62))
-                    .build());
             sleep(200);
-            backLeg.setPosition(.85);  // .9 is closed pos
-            sleep(50);
-            frontLeg.setPosition(.6);
-            sleep(50);
-            //  hips.setPosition(.18);
-            // sleep(200);
-            arch.setPosition(.69);
-            sleep(50);
-            rightWinch.setTargetPosition(-20);
-            rightWinch.setPower(.8);
-            leftWinch.setTargetPosition(-20);
-            leftWinch.setPower(.8);
-            // hips.setPosition(.27);
-            sleep(300);
-            backLeg.setPosition(.76);  // .9 is closed pos
-            frontLeg.setPosition(.52);
-            sleep(300);
 
         }
         else{
-            Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(48,-62))
-                    .build());
             sleep(200);
-            backLeg.setPosition(.85);  // .9 is closed pos
-            sleep(50);
-            frontLeg.setPosition(.6);
-            sleep(50);
-            //  hips.setPosition(.18);
-            // sleep(200);
-            arch.setPosition(.69);
-            sleep(50);
-            rightWinch.setTargetPosition(-20);
-            rightWinch.setPower(.8);
-            leftWinch.setTargetPosition(-20);
-            leftWinch.setPower(.8);
-            // hips.setPosition(.27);
-            sleep(300);
-            backLeg.setPosition(.76);  // .9 is closed pos
-            frontLeg.setPosition(.52);
-            sleep(300);
-
 
         }
 
@@ -313,26 +313,13 @@ public class DiddyTrump extends LinearOpMode {
 
         // PARK
         if(zone == 2) {
-            Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeTo(new Vector2d(50, -55))
-                    .turnTo(Math.toRadians(90))
-                    .strafeTo(new Vector2d(56, -55))
-                    .build());
+            sleep(200);
         }
         else if(zone == 1){
-            Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeTo(new Vector2d(50, -55))
-                    .turnTo(Math.toRadians(90))
-                    .strafeTo(new Vector2d(56, -55))
-                    .build());
+            sleep(200);
         }
         else{
-            Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeTo(new Vector2d(50, -55))
-                    .turnTo(Math.toRadians(90))
-                    .strafeTo(new Vector2d(56, -55))
-                    .build());
-
+            sleep(200);
         }
 
     }

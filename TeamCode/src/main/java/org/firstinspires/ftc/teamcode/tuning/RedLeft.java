@@ -1,10 +1,8 @@
+
+
 package org.firstinspires.ftc.teamcode.tuning;
 
-import androidx.annotation.NonNull;
-
 import com.acmerobotics.dashboard.FtcDashboard;
-import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
-import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
@@ -79,7 +77,7 @@ public class RedLeft extends LinearOpMode {
         backLeg = hardwareMap.servo.get("backLeg");
         sneakyLink = hardwareMap.servo.get("sneakyLink");
         sneakyRink = hardwareMap.servo.get("sneakyRink");
-        drive = new MecanumDrive(hardwareMap, new Pose2d(-36, 63, Math.toRadians(90)));
+        drive = new MecanumDrive(hardwareMap, new Pose2d(-36, -63, Math.toRadians(270)));
         TeamPropDetector.startPropDetection(hardwareMap, telemetry);
         drive.setTelemetry(telemetry);
 
@@ -101,25 +99,18 @@ public class RedLeft extends LinearOpMode {
         rightWinch.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         leftWinch.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        hips.setPosition(.22); // og is .22
-        arch.setPosition(.69);
-        backLeg.setPosition(.77);  // .9 is closed pos
-        frontLeg.setPosition(.52); //  .6 is closed pos
-        sneakyLink.setPosition(1); //  up from 0
-        sneakyRink.setPosition(0); // down from 0
-
 
         waitForStart();
-        zone = TeamPropDetector.getBluePropZone();
+        zone = TeamPropDetector.getRedPropZone();
         TeamPropDetector.endPropDetection();
         //Actions.runBlocking(drive.actionBuilder(new Pose2d(12.00, 63, Math.toRadians(90))).strafeTo(new Vector2d(12,30)).build());
         //Drive to SPIke Mark and get from stack
         if (zone == 1) {
-            Actions.runBlocking(drive.actionBuilder(new Pose2d(-36.00, -63.00, Math.toRadians(90.00)))
-                    .strafeTo(new Vector2d(-40.8, -55.78))
-                    .strafeToLinearHeading(new Vector2d(-25.55, -36.84), Math.toRadians(120.00))
-                    .strafeToLinearHeading(new Vector2d(-50.24, -50.35), Math.toRadians(180.00))
-                    .splineToConstantHeading(new Vector2d(49.89, -58.66), Math.toRadians(0.00))
+
+            Actions.runBlocking(drive.actionBuilder(new Pose2d(-36.00, -63.00, Math.toRadians(270)))
+                    .strafeToConstantHeading(new Vector2d(-49.05, -35.44))
+                    .strafeToLinearHeading(new Vector2d(-32, -60), Math.toRadians(180))
+                    .strafeToConstantHeading(new Vector2d(48, -60))
                     .build());
             backLeg.setPosition(.82);
             frontLeg.setPosition(.62);
@@ -131,12 +122,15 @@ public class RedLeft extends LinearOpMode {
             sleep(1000);
             arch.setPosition(.363);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(51.5, -40.19))
+                    .strafeToLinearHeading(new Vector2d(51.5, -23.3), Math.toRadians(180))
                     .build());
             backLeg.setPosition(.76);  // .9 is closed pos
             sleep(50);
             frontLeg.setPosition(.52);
             sleep(300);
+            Actions.runBlocking(drive.actionBuilder(drive.pose)
+                    .strafeTo(new Vector2d(48, -34.7))
+                    .build());
             backLeg.setPosition(.85);  // .9 is closed pos
             sleep(50);
             frontLeg.setPosition(.6);
@@ -159,10 +153,10 @@ public class RedLeft extends LinearOpMode {
 
 
         } else if (zone == 2) {
-            Actions.runBlocking(drive.actionBuilder(new Pose2d(-36.00, -63.00, Math.toRadians(90.00)))
+            Actions.runBlocking(drive.actionBuilder(new Pose2d(-36.00, -63.00, Math.toRadians(270)))
                     .strafeToConstantHeading(new Vector2d(-36.10, -32.77))
                     .strafeToConstantHeading(new Vector2d(-32, -60))
-                    .strafeToLinearHeading(new Vector2d(50.91, -60), Math.toRadians(180))
+                    .strafeToLinearHeading(new Vector2d(48, -60), Math.toRadians(180))
                     .build());
             backLeg.setPosition(.82);
             frontLeg.setPosition(.62);
@@ -174,12 +168,15 @@ public class RedLeft extends LinearOpMode {
             sleep(1000);
             arch.setPosition(.363);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(51.11, -32.49))
+                    .strafeToConstantHeading(new Vector2d(51.11, -35.49))
                     .build());
             backLeg.setPosition(.76);  // .9 is closed pos
             sleep(50);
             frontLeg.setPosition(.52);
             sleep(300);
+            Actions.runBlocking(drive.actionBuilder(drive.pose)
+                    .strafeTo(new Vector2d(48, -35.7))
+                    .build());
             backLeg.setPosition(.85);  // .9 is closed pos
             sleep(50);
             frontLeg.setPosition(.6);
@@ -199,10 +196,11 @@ public class RedLeft extends LinearOpMode {
             sleep(300);
 
         } else {
-            Actions.runBlocking(drive.actionBuilder(new Pose2d(-36.00, -63.00, Math.toRadians(90.00)))
-                    .strafeToConstantHeading(new Vector2d(-47.05, -31.44))
-                    .strafeToLinearHeading(new Vector2d(-32, -60), Math.toRadians(180))
-                    .strafeToConstantHeading(new Vector2d(50.91, -60))
+            Actions.runBlocking(drive.actionBuilder(new Pose2d(-36.00, -63.00, Math.toRadians(270)))  //90
+                    .strafeTo(new Vector2d(-40.8, -55.78))
+                    .strafeToLinearHeading(new Vector2d(-25.55, -36.84), Math.toRadians(240)) //120
+                    .strafeToLinearHeading(new Vector2d(-50.24, -50.35), Math.toRadians(180)) //180
+                    .splineToConstantHeading(new Vector2d(48, -58.66), Math.toRadians(0)) //0
                     .build());
             backLeg.setPosition(.82);
             frontLeg.setPosition(.62);
@@ -214,12 +212,15 @@ public class RedLeft extends LinearOpMode {
             sleep(1000);
             arch.setPosition(.363);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToLinearHeading(new Vector2d(51.5, -24.49), Math.toRadians(180))
+                    .strafeToConstantHeading(new Vector2d(51.5, -42.19))
                     .build());
             backLeg.setPosition(.76);  // .9 is closed pos
             sleep(50);
             frontLeg.setPosition(.52);
             sleep(300);
+            Actions.runBlocking(drive.actionBuilder(drive.pose)
+                    .strafeTo(new Vector2d(48.5, -42.7))
+                    .build());
             backLeg.setPosition(.85);  // .9 is closed pos
             sleep(50);
             frontLeg.setPosition(.6);
@@ -250,11 +251,11 @@ public class RedLeft extends LinearOpMode {
 
         if (zone == 1) {
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToLinearHeading(new Vector2d(49, -60), Math.toRadians(270))
+                    .strafeToLinearHeading(new Vector2d(49, -60), Math.toRadians(90))
                     .build());
         } else if (zone == 2) {
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToLinearHeading(new Vector2d(49, -60), Math.toRadians(270))
+                    .strafeToLinearHeading(new Vector2d(49, -60), Math.toRadians(90))
                     .build());
 
 
@@ -290,7 +291,7 @@ public class RedLeft extends LinearOpMode {
 
         } else
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToLinearHeading(new Vector2d(49, -60), Math.toRadians(270))
+                    .strafeToLinearHeading(new Vector2d(49, -60), Math.toRadians(90))
                     .build());
 
         drive.updatePoseEstimate();
