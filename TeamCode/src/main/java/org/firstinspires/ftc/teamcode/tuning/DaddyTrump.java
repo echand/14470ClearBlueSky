@@ -112,8 +112,9 @@ public class DaddyTrump extends LinearOpMode {
         //Drive to SPIke Mark
         if (zone == 1) {
             Actions.runBlocking(drive.actionBuilder(new Pose2d(12, -63, Math.toRadians(270)))
-                    .strafeToConstantHeading(new Vector2d(23.53, -32.6)) //40
-                    .strafeToConstantHeading(new Vector2d(23.53, -42)) //50.86
+                    .strafeTo(new Vector2d(10.55, -44.21))
+                    .strafeToLinearHeading(new Vector2d(2.43, -31.23), Math.toRadians(300))
+                    .strafeToConstantHeading(new Vector2d(12, -50))
                     .build());
             backLeg.setPosition(.82);
             frontLeg.setPosition(.62);
@@ -122,17 +123,11 @@ public class DaddyTrump extends LinearOpMode {
             rightWinch.setPower(.8);
             leftWinch.setTargetPosition(-1000);
             leftWinch.setPower(.8);
-            sleep(1000);
+            sleep(2000);
             arch.setPosition(.363);
+
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToLinearHeading(new Vector2d(52.05, -42.19), Math.toRadians(180.00)) //backdrop location
-                    .build());
-            backLeg.setPosition(.76);  // .9 is closed pos
-            sleep(50);
-            frontLeg.setPosition(.52);
-            sleep(250);
-            Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeTo(new Vector2d(50.5, -35.7))
+                    .strafeToLinearHeading(new Vector2d(52.05, -27.99),  Math.toRadians(180.00))
                     .build());
             backLeg.setPosition(.85);  // .9 is closed pos
             sleep(50);
@@ -156,13 +151,13 @@ public class DaddyTrump extends LinearOpMode {
             sneakyRink.setPosition(.22);
             intake.setPower(-1);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .splineToConstantHeading(new Vector2d(16.23,-10.55),Math.toRadians(191.12))
+                    .splineToConstantHeading(new Vector2d(20,-10.55),Math.toRadians(191))
                     .splineToConstantHeading(new Vector2d(-55.53,-14.3),Math.toRadians(180))
                     .build());
             sleep(750);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
                     .strafeToConstantHeading(new Vector2d(-36.91, -11.56))
-                    .splineToConstantHeading(new Vector2d(54.25,-29.7),Math.toRadians(75))
+                    .splineToConstantHeading(new Vector2d(53.4,-30.7),Math.toRadians(315))
                     .build());
             intake.setPower(0);
 //            sleep(300);
@@ -195,7 +190,7 @@ public class DaddyTrump extends LinearOpMode {
             frontLeg.setPosition(.52);
             sleep(200);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .splineToConstantHeading(new Vector2d(16.23,-10.55),Math.toRadians(191.12))
+                    .splineToConstantHeading(new Vector2d(20,-10.55),Math.toRadians(191))
                     .splineToConstantHeading(new Vector2d(-55.75,-13.8),Math.toRadians(180))
                     .build());
             sneakyLink.setPosition(.7); //weirdo position la la lala la
@@ -204,7 +199,7 @@ public class DaddyTrump extends LinearOpMode {
             sleep(300);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
                     .strafeToConstantHeading(new Vector2d(-36.91, -11.56))
-                    .splineToConstantHeading(new Vector2d(55.5,-29.7),Math.toRadians(75))
+                    .splineToConstantHeading(new Vector2d(54.5,-29.7),Math.toRadians(315))
                     .build());
             intake.setPower(0);
             backLeg.setPosition(.81);
@@ -223,6 +218,7 @@ public class DaddyTrump extends LinearOpMode {
             sleep(50);
             frontLeg.setPosition(.52);
             sleep(250);
+
 
         } else if (zone == 2) {
             Actions.runBlocking(drive.actionBuilder(new Pose2d(12, -63, Math.toRadians(270)))
@@ -269,13 +265,13 @@ public class DaddyTrump extends LinearOpMode {
             sneakyRink.setPosition(.22);
             intake.setPower(-1);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .splineToConstantHeading(new Vector2d(16.23,-10.55),Math.toRadians(191.12))
+                    .splineToConstantHeading(new Vector2d(20,-10.55),Math.toRadians(191))
                     .splineToConstantHeading(new Vector2d(-55.53,-14.3),Math.toRadians(180))
                     .build());
             sleep(750);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
                     .strafeToConstantHeading(new Vector2d(-36.91, -11.56))
-                    .splineToConstantHeading(new Vector2d(54.25,-29.7),Math.toRadians(75))
+                    .splineToConstantHeading(new Vector2d(53.4,-30.7),Math.toRadians(315))
                     .build());
             intake.setPower(0);
 //            sleep(300);
@@ -287,7 +283,7 @@ public class DaddyTrump extends LinearOpMode {
             rightWinch.setPower(1);
             leftWinch.setTargetPosition(-850);
             leftWinch.setPower(1);
-            sleep(750);
+            sleep(650);
             arch.setPosition(.363);
             sleep(200);
             backLeg.setPosition(.76);  // .9 is closed pos
@@ -308,7 +304,7 @@ public class DaddyTrump extends LinearOpMode {
             frontLeg.setPosition(.52);
             sleep(200);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .splineToConstantHeading(new Vector2d(16.23,-10.55),Math.toRadians(191.12))
+                    .splineToConstantHeading(new Vector2d(20,-10.55),Math.toRadians(191))
                     .splineToConstantHeading(new Vector2d(-55.75,-13.8),Math.toRadians(180))
                     .build());
             sneakyLink.setPosition(.7); //weirdo position la la lala la
@@ -317,7 +313,7 @@ public class DaddyTrump extends LinearOpMode {
             sleep(300);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
                     .strafeToConstantHeading(new Vector2d(-36.91, -11.56))
-                    .splineToConstantHeading(new Vector2d(55.5,-29.7),Math.toRadians(75))
+                    .splineToConstantHeading(new Vector2d(54.5,-29.7),Math.toRadians(315))
                     .build());
             intake.setPower(0);
             backLeg.setPosition(.81);
@@ -338,10 +334,10 @@ public class DaddyTrump extends LinearOpMode {
             sleep(250);
 
         } else {
+
             Actions.runBlocking(drive.actionBuilder(new Pose2d(12, -63, Math.toRadians(270)))
-                    .strafeTo(new Vector2d(10.55, -44.21))
-                    .strafeToLinearHeading(new Vector2d(2.43, -31.23), Math.toRadians(60.00))
-                    .strafeToConstantHeading(new Vector2d(12, -50))
+                    .strafeToConstantHeading(new Vector2d(23.53, -40)) //40
+                    .strafeToConstantHeading(new Vector2d(23.53, -50.86)) //50.86
                     .build());
             backLeg.setPosition(.82);
             frontLeg.setPosition(.62);
@@ -350,11 +346,17 @@ public class DaddyTrump extends LinearOpMode {
             rightWinch.setPower(.8);
             leftWinch.setTargetPosition(-1000);
             leftWinch.setPower(.8);
-            sleep(2000);
+            sleep(1000);
             arch.setPosition(.363);
-
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToLinearHeading(new Vector2d(52.05, -27.99),  Math.toRadians(180.00))
+                    .strafeToLinearHeading(new Vector2d(52.05, -42.19), Math.toRadians(180.00)) //backdrop location
+                    .build());
+            backLeg.setPosition(.76);  // .9 is closed pos
+            sleep(50);
+            frontLeg.setPosition(.52);
+            sleep(250);
+            Actions.runBlocking(drive.actionBuilder(drive.pose)
+                    .strafeTo(new Vector2d(50.5, -35.7))
                     .build());
             backLeg.setPosition(.85);  // .9 is closed pos
             sleep(50);
@@ -378,13 +380,13 @@ public class DaddyTrump extends LinearOpMode {
             sneakyRink.setPosition(.22);
             intake.setPower(-1);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .splineToConstantHeading(new Vector2d(16.23,-10.55),Math.toRadians(191.12))
-                    .splineToConstantHeading(new Vector2d(-55.53,-14.3),Math.toRadians(180))
+                    .splineToConstantHeading(new Vector2d(20,-10.55),Math.toRadians(191))
+                    .splineToConstantHeading(new Vector2d(-55.53,-17.3),Math.toRadians(180))
                     .build());
             sleep(750);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
                     .strafeToConstantHeading(new Vector2d(-36.91, -11.56))
-                    .splineToConstantHeading(new Vector2d(54.25,-29.7),Math.toRadians(75))
+                    .splineToConstantHeading(new Vector2d(53.4,-30.7),Math.toRadians(315))
                     .build());
             intake.setPower(0);
 //            sleep(300);
@@ -417,8 +419,8 @@ public class DaddyTrump extends LinearOpMode {
             frontLeg.setPosition(.52);
             sleep(200);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .splineToConstantHeading(new Vector2d(16.23,-10.55),Math.toRadians(191.12))
-                    .splineToConstantHeading(new Vector2d(-55.75,-13.8),Math.toRadians(180))
+                    .splineToConstantHeading(new Vector2d(20,-10.55),Math.toRadians(191))
+                    .splineToConstantHeading(new Vector2d(-55.75,-15.8),Math.toRadians(180))
                     .build());
             sneakyLink.setPosition(.7); //weirdo position la la lala la
             sneakyRink.setPosition(.3);
@@ -426,7 +428,7 @@ public class DaddyTrump extends LinearOpMode {
             sleep(300);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
                     .strafeToConstantHeading(new Vector2d(-36.91, -11.56))
-                    .splineToConstantHeading(new Vector2d(55.5,-29.7),Math.toRadians(75))
+                    .splineToConstantHeading(new Vector2d(54.5,-29.7),Math.toRadians(315))
                     .build());
             intake.setPower(0);
             backLeg.setPosition(.81);
@@ -445,9 +447,6 @@ public class DaddyTrump extends LinearOpMode {
             sleep(50);
             frontLeg.setPosition(.52);
             sleep(250);
-
-
-
         }
         drive.updatePoseEstimate();
         telemetry.addLine("Pose" + drive.pose.position);
@@ -459,7 +458,7 @@ public class DaddyTrump extends LinearOpMode {
 
         if (zone == 1) {
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeTo(new Vector2d(53.5, -29.7))
+                    .strafeTo(new Vector2d(51.5, -29.7))
                     .build());
             backLeg.setPosition(.85);  // .9 is closed pos
             sleep(50);
@@ -482,7 +481,7 @@ public class DaddyTrump extends LinearOpMode {
             sleep(300);
         } else if (zone == 2) {
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeTo(new Vector2d(53.5, -29.7))
+                    .strafeTo(new Vector2d(51.5, -29.7))
                     .build());
             backLeg.setPosition(.85);  // .9 is closed pos
             sleep(50);
@@ -537,8 +536,28 @@ public class DaddyTrump extends LinearOpMode {
 
         } else
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToLinearHeading(new Vector2d(49, -55), Math.toRadians(270))
+                    .strafeTo(new Vector2d(51.5, -29.7))
                     .build());
+        backLeg.setPosition(.85);  // .9 is closed pos
+        sleep(50);
+        frontLeg.setPosition(.6);
+        sleep(50);
+        hips.setPosition(.18);
+        sleep(200);
+        arch.setPosition(.69);
+        sleep(50);
+        rightWinch.setTargetPosition(-20);
+        rightWinch.setPower(1);
+        leftWinch.setTargetPosition(-20);
+        leftWinch.setPower(1);
+        hips.setPosition(.27);
+        sleep(300);
+        // hips.setPosition(.27);
+//            sleep(300);
+        backLeg.setPosition(.76);  // .9 is closed pos
+        frontLeg.setPosition(.52);
+        sleep(300);
+
         drive.updatePoseEstimate();
         telemetry.addLine("Pose" + drive.pose.position);
         telemetry.addLine("HEading" + Math.toDegrees(drive.pose.heading.log()));
