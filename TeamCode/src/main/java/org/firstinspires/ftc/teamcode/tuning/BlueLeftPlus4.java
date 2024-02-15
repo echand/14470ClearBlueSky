@@ -134,7 +134,7 @@ public class BlueLeftPlus4 extends LinearOpMode {
             backLeg.setPosition(.76);  // .9 is closed pos
             sleep(50);
             frontLeg.setPosition(.46);
-            sleep(450);
+            sleep(150);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
                     .strafeTo(new Vector2d(50.5, 35.7))
                     .build());
@@ -156,8 +156,8 @@ public class BlueLeftPlus4 extends LinearOpMode {
             frontLeg.setPosition(.52);
             sleep(200);
             //intake.setPower(0);
-            sneakyLink.setPosition(.76); //weirdo position la la lala la
-            sneakyRink.setPosition(.24);
+            sneakyLink.setPosition(.77); //weirdo position la la lala la
+            sneakyRink.setPosition(.23);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
                     .splineToConstantHeading(new Vector2d(22.5,10.55),Math.toRadians(191.12))
                     .splineToConstantHeading(new Vector2d(-55.56,14.3),Math.toRadians(180))
@@ -250,7 +250,7 @@ public class BlueLeftPlus4 extends LinearOpMode {
             backLeg.setPosition(.76);  // .9 is closed pos
             sleep(50);
             frontLeg.setPosition(.46);
-            sleep(250);
+            sleep(100);
 
         } else if (zone == 2) {
             Actions.runBlocking(drive.actionBuilder(new Pose2d(12, 63, Math.toRadians(90)))
@@ -263,7 +263,7 @@ public class BlueLeftPlus4 extends LinearOpMode {
             rightWinch.setPower(1);
             leftWinch.setTargetPosition(-850);
             leftWinch.setPower(1);
-            sleep(700);
+            sleep(650);
             arch.setPosition(.363);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
                     .splineToLinearHeading(new Pose2d(52.5, 35.7, Math.toRadians(180.00)), Math.toRadians(0.00))
@@ -271,7 +271,7 @@ public class BlueLeftPlus4 extends LinearOpMode {
             backLeg.setPosition(.76);  // .9 is closed pos
             sleep(50);
             frontLeg.setPosition(.46);
-            sleep(250);
+            sleep(150);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
                     .strafeTo(new Vector2d(50.5, 35.7))
                     .build());
@@ -293,8 +293,8 @@ public class BlueLeftPlus4 extends LinearOpMode {
             frontLeg.setPosition(.52);
             sleep(200);
             //intake.setPower(0);
-            sneakyLink.setPosition(.76); //weirdo position la la lala la
-            sneakyRink.setPosition(.24);
+            sneakyLink.setPosition(.77); //weirdo position la la lala la
+            sneakyRink.setPosition(.23);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
                     .splineToConstantHeading(new Vector2d(16.23,10.55),Math.toRadians(191.12))
                     .splineToConstantHeading(new Vector2d(-55.56,14.3),Math.toRadians(180))
@@ -340,7 +340,7 @@ public class BlueLeftPlus4 extends LinearOpMode {
             hips.setPosition(.18);
             sleep(200);
             arch.setPosition(.69);
-            sleep(250);
+            sleep(150);
             rightWinch.setTargetPosition(-20);
             rightWinch.setPower(1);
             leftWinch.setTargetPosition(-20);
@@ -357,7 +357,7 @@ public class BlueLeftPlus4 extends LinearOpMode {
             sneakyLink.setPosition(.7); //weirdo position la la lala la
             sneakyRink.setPosition(.3);
             intake.setPower(-1);
-            sleep(300);
+            sleep(450);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
                     .strafeToConstantHeading(new Vector2d(-36.91, 11.56))
                     .afterDisp(15,(a)->{
@@ -387,7 +387,7 @@ public class BlueLeftPlus4 extends LinearOpMode {
             backLeg.setPosition(.76);  // .9 is closed pos
             sleep(50);
             frontLeg.setPosition(.46);
-            sleep(250);
+            sleep(100);
 
         } else {
             Actions.runBlocking(drive.actionBuilder(new Pose2d(12, 63, Math.toRadians(90)))
@@ -402,16 +402,16 @@ public class BlueLeftPlus4 extends LinearOpMode {
             rightWinch.setPower(1);
             leftWinch.setTargetPosition(-1000);
             leftWinch.setPower(1);
-            sleep(800);
+            sleep(700);
             arch.setPosition(.363);
-
+//
             Actions.runBlocking(drive.actionBuilder(drive.pose)
                     .strafeToLinearHeading(new Vector2d(52.05, 27.99),  Math.toRadians(180.00))
                     .build());
             backLeg.setPosition(.76);  // .9 is closed pos
             sleep(50);
             frontLeg.setPosition(.46);
-            sleep(250);
+            sleep(100);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
                     .strafeToLinearHeading(new Vector2d(50.5, 27.99),  Math.toRadians(180.00))
                     .build());
@@ -433,8 +433,8 @@ public class BlueLeftPlus4 extends LinearOpMode {
             frontLeg.setPosition(.52);
             sleep(200);
             //intake.setPower(0);
-            sneakyLink.setPosition(.76); //weirdo position la la lala la
-            sneakyRink.setPosition(.24);
+            sneakyLink.setPosition(.77); //weirdo position la la lala la
+            sneakyRink.setPosition(.22);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
                     .splineToConstantHeading(new Vector2d(16.23,10.55),Math.toRadians(191.12))
                     .splineToConstantHeading(new Vector2d(-55.56,14.3),Math.toRadians(180))
@@ -457,7 +457,7 @@ public class BlueLeftPlus4 extends LinearOpMode {
                         rightWinch.setPower(1);
                         leftWinch.setTargetPosition(-1400);
                         leftWinch.setPower(1);
-                        sleep(850);
+                        sleep(750);
                         arch.setPosition(.363);
                         return false;
                     })
@@ -476,11 +476,11 @@ public class BlueLeftPlus4 extends LinearOpMode {
             backLeg.setPosition(.85);  // .9 is closed pos
             sleep(50);
             frontLeg.setPosition(.6);
-            sleep(150);
+            sleep(50);
             hips.setPosition(.18);
             sleep(200);
             arch.setPosition(.69);
-            sleep(250);
+            sleep(150);
             rightWinch.setTargetPosition(-20);
             rightWinch.setPower(1);
             leftWinch.setTargetPosition(-20);
@@ -489,7 +489,7 @@ public class BlueLeftPlus4 extends LinearOpMode {
             sleep(200);
             backLeg.setPosition(.76);  // .9 is closed pos
             frontLeg.setPosition(.52);
-            sleep(200);
+            sleep(100);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
                     .splineToConstantHeading(new Vector2d(16.23,10.55),Math.toRadians(191.12))
                     .splineToConstantHeading(new Vector2d(-55.75,13.8),Math.toRadians(180))
@@ -497,10 +497,10 @@ public class BlueLeftPlus4 extends LinearOpMode {
             sneakyLink.setPosition(.7); //weirdo position la la lala la
             sneakyRink.setPosition(.3);
             intake.setPower(-1);
-            sleep(300);
+            sleep(400);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
                     .strafeToConstantHeading(new Vector2d(-36.91, 11.56))
-                    .afterDisp(15,(a)->{
+                    .afterDisp(14,(a)->{
                         backLeg.setPosition(.81);
                         frontLeg.setPosition(.61);
 //            sleep(300);
@@ -517,11 +517,10 @@ public class BlueLeftPlus4 extends LinearOpMode {
                     .splineToConstantHeading(new Vector2d(55.5,29.7),Math.toRadians(45))
                     .build());
             intake.setPower(0);
-            sleep(200);
             backLeg.setPosition(.76);  // .9 is closed pos
             sleep(50);
             frontLeg.setPosition(.46);
-            sleep(250);
+            sleep(100);
 
 
 
@@ -543,9 +542,9 @@ public class BlueLeftPlus4 extends LinearOpMode {
             frontLeg.setPosition(.6);
             sleep(50);
             hips.setPosition(.18);
-            sleep(200);
+            sleep(150);
             arch.setPosition(.69);
-            sleep(250);
+            sleep(200);
             rightWinch.setTargetPosition(-20);
             rightWinch.setPower(1);
             leftWinch.setTargetPosition(-20);
@@ -614,7 +613,7 @@ public class BlueLeftPlus4 extends LinearOpMode {
 
         } else
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToLinearHeading(new Vector2d(49, 55), Math.toRadians(270))
+                    .strafeTo(new Vector2d(53.5, 29.7))
                     .build());
         backLeg.setPosition(.85);  // .9 is closed pos
         sleep(50);
@@ -623,7 +622,7 @@ public class BlueLeftPlus4 extends LinearOpMode {
         hips.setPosition(.18);
         sleep(200);
         arch.setPosition(.69);
-        sleep(250);
+        sleep(150);
         rightWinch.setTargetPosition(-20);
         rightWinch.setPower(1);
         leftWinch.setTargetPosition(-20);
