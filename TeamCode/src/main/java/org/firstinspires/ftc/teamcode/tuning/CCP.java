@@ -1,10 +1,8 @@
+
+
 package org.firstinspires.ftc.teamcode.tuning;
 
-import androidx.annotation.NonNull;
-
 import com.acmerobotics.dashboard.FtcDashboard;
-import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
-import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
@@ -37,7 +35,7 @@ import java.util.ArrayList;
 
 
 @Autonomous
-public class BlueRightPlus3 extends LinearOpMode {
+public class CCP extends LinearOpMode {
     OpenCvCamera camera;
 
     static final double FEET_PER_METER = 3.28084;
@@ -68,7 +66,7 @@ public class BlueRightPlus3 extends LinearOpMode {
 
 
     @Override
-    public void runOpMode () throws InterruptedException {
+    public void runOpMode() throws InterruptedException {
         leftWinch = hardwareMap.dcMotor.get("leftWinch");
         rightWinch = hardwareMap.dcMotor.get("rightWinch");
         shooter = hardwareMap.dcMotor.get("shooter");
@@ -79,7 +77,7 @@ public class BlueRightPlus3 extends LinearOpMode {
         backLeg = hardwareMap.servo.get("backLeg");
         sneakyLink = hardwareMap.servo.get("sneakyLink");
         sneakyRink = hardwareMap.servo.get("sneakyRink");
-        drive = new MecanumDrive(hardwareMap, new Pose2d(-36, 63, Math.toRadians(90)));
+        drive = new MecanumDrive(hardwareMap, new Pose2d(-36, -63, Math.toRadians(270)));
         TeamPropDetector.startPropDetection(hardwareMap, telemetry);
         drive.setTelemetry(telemetry);
 
@@ -101,25 +99,15 @@ public class BlueRightPlus3 extends LinearOpMode {
         rightWinch.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         leftWinch.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        hips.setPosition(.22); // og is .22
-        arch.setPosition(.69);
-        backLeg.setPosition(.77);  // .9 is closed pos
-        frontLeg.setPosition(.52); //  .6 is closed pos
-        sneakyLink.setPosition(1); //  up from 0
-        sneakyRink.setPosition(0); // down from 0
-
 
         waitForStart();
-        zone = TeamPropDetector.getBluePropZone();
+        zone = TeamPropDetector.getRedPropZone();
         TeamPropDetector.endPropDetection();
-        //Actions.runBlocking(drive.actionBuilder(new Pose2d(12.00, 63, Math.toRadians(90))).strafeTo(new Vector2d(12,30)).build());
-        //Drive to SPIke Mark and get from stack
         if (zone == 1) {
-            Actions.runBlocking(drive.actionBuilder(new Pose2d(-36.00, 63.00, Math.toRadians(90.00)))
-                    .strafeTo(new Vector2d(-39, 55.78))
-                    .strafeToLinearHeading(new Vector2d(-25.5, 38.84), Math.toRadians(110.00))
-                    .strafeToLinearHeading(new Vector2d(-50.24, 50.35), Math.toRadians(180.00))
-                    .splineToLinearHeading(new Pose2d(-58.8, 37.7, Math.toRadians(180.00)), Math.toRadians(222.00)) //stack
+
+            Actions.runBlocking(drive.actionBuilder(new Pose2d(-36.00, -63.00, Math.toRadians(270.00)))
+                    .strafeToConstantHeading(new Vector2d(-47.05, -31.44))
+                    .strafeToLinearHeading(new Vector2d(-58.5, -37.7), Math.toRadians(180.00))
                     .build());
             hips.setPosition(.27);
             sneakyLink.setPosition(.85); //weirdo position la la lala la
@@ -128,21 +116,259 @@ public class BlueRightPlus3 extends LinearOpMode {
             sleep(850);
 
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeTo(new Vector2d(-55,37.7)) //37.7
+                    .strafeTo(new Vector2d(-55, -37.7))
                     .build());
             sneakyLink.setPosition(.6); //weirdo position la la lala la
             sneakyRink.setPosition(.4);
 
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(-43.7,58)) //goes to truss
-                    .afterDisp(9,(a)->{ //20
+                    .strafeToConstantHeading(new Vector2d(-43.7, -60))
+                    .afterDisp(9, (a) -> { //20\
+                        sneakyLink.setPosition(.9); //weirdo position la la lala la
+                        sneakyRink.setPosition(.1);
+                        intake.setPower(.7);
+                        return false;
+                    })
+                    .strafeToConstantHeading(new Vector2d(45.75, -58.8))
+                    .afterDisp(13, (a) -> {
+                        backLeg.setPosition(.81);
+                        frontLeg.setPosition(.61);
+//            sleep(300);
+                        sleep(200);
+                        rightWinch.setTargetPosition(-1000);
+                        rightWinch.setPower(1);
+                        leftWinch.setTargetPosition(-1000);
+                        leftWinch.setPower(1);
+                        sleep(850);
+                        arch.setPosition(.363);
+                        sleep(200);
+                        hips.setPosition(.95);
+                        return false;
+
+                    })
+                    .strafeToConstantHeading(new Vector2d(52.75, -28.5))
+                    .build());
+            intake.setPower(0);
+//            sleep(300);
+//           hips.setPosition(.18);
+            backLeg.setPosition(.76);  // .9 is closed pos
+            sleep(50);
+            frontLeg.setPosition(.46);
+            sleep(50);
+            Actions.runBlocking(drive.actionBuilder(drive.pose)
+                    .strafeTo(new Vector2d(49, -28.5))
+                    .build());
+            backLeg.setPosition(.85);  // .9 is closed pos
+            sleep(50);
+            frontLeg.setPosition(.6);
+            sleep(150);
+            hips.setPosition(.18);
+            sleep(500);
+            arch.setPosition(.69);
+            sleep(50);
+            rightWinch.setTargetPosition(-20);
+            rightWinch.setPower(1);
+            leftWinch.setTargetPosition(-20);
+            leftWinch.setPower(1);
+            hips.setPosition(.27);
+            sleep(200);
+            backLeg.setPosition(.76);  // .9 is closed pos
+            frontLeg.setPosition(.52);
+            sleep(200);
+            sneakyLink.setPosition(.8); //weirdo position la la lala la
+            sneakyRink.setPosition(.2);
+            Actions.runBlocking(drive.actionBuilder(drive.pose)
+                    .splineToConstantHeading(new Vector2d(24.34, -59.83), Math.toRadians(180))
+                    .splineToConstantHeading(new Vector2d(-60.1, -34.71), Math.toRadians(135.00))
+                    .build());
+            sneakyLink.setPosition(.69); //weirdo position la la lala la
+            sneakyRink.setPosition(.31);
+            intake.setPower(-1);
+            sleep(400);
+            Actions.runBlocking(drive.actionBuilder(drive.pose)
+                    .strafeToConstantHeading(new Vector2d(-37.7, -60.6))
+                    .afterDisp(9, (a) -> { //20
+                        intake.setPower(.7);
+                        return false;
+                    })
+                    .strafeToConstantHeading(new Vector2d(45.75, -60.6))
+                    .afterDisp(12, (a) -> {
+                        backLeg.setPosition(.81);
+                        frontLeg.setPosition(.61);
+//            sleep(300);
+//            hips.setPosition(.18); hips hips hips hips
+                        sleep(200);
+                        rightWinch.setTargetPosition(-1400);
+                        rightWinch.setPower(1);
+                        leftWinch.setTargetPosition(-1400);
+                        leftWinch.setPower(1);
+                        sleep(850);
+                        arch.setPosition(.363);
+                        return false;
+                    })
+                    .strafeToConstantHeading(new Vector2d(54.75, -35.7))
+                    .build());
+            intake.setPower(0);
+            backLeg.setPosition(.81);
+            frontLeg.setPosition(.61);
+//            sleep(300);
+//            hips.setPosition(.18); hips hips hips hips
+            sleep(200);
+            arch.setPosition(.363);
+            sleep(200);
+            backLeg.setPosition(.76);  // .9 is closed pos
+            sleep(50);
+            frontLeg.setPosition(.46);
+            sleep(150);
+
+        } else if (zone == 2) {
+            Actions.runBlocking(drive.actionBuilder(new Pose2d(-36.00, -63.00, Math.toRadians(270.00)))
+                    .strafeToConstantHeading(new Vector2d(-36.10, -32.77))
+                    .strafeToLinearHeading(new Vector2d(-58.5, -37.7), Math.toRadians(180.00))
+                    .build());
+            hips.setPosition(.27);
+            sneakyLink.setPosition(.85); //weirdo position la la lala la
+            sneakyRink.setPosition(.15);
+            intake.setPower(-1);
+            sleep(850);
+
+            Actions.runBlocking(drive.actionBuilder(drive.pose)
+                    .strafeTo(new Vector2d(-55, -37.7))
+                    .build());
+            sneakyLink.setPosition(.6); //weirdo position la la lala la
+            sneakyRink.setPosition(.4);
+            sleep(250);
+
+            Actions.runBlocking(drive.actionBuilder(drive.pose)
+                    .strafeToConstantHeading(new Vector2d(-43.7, -60))
+                    .afterDisp(9, (a) -> { //20
                         sneakyLink.setPosition(.9); //weirdo position la la lala la
                         sneakyRink.setPosition(.1);
                         intake.setPower(0.7);
                         return false;
                     })
-                    .strafeToConstantHeading(new Vector2d(45.75,58))//under truss ends on other side
-                    .afterDisp(12,(a)->{
+                    .strafeToConstantHeading(new Vector2d(40, -59.8))
+                    .afterDisp(12, (a) -> {
+                        backLeg.setPosition(.83);
+                        frontLeg.setPosition(.61);
+//            sleep(300);
+                        sleep(200);
+                        rightWinch.setTargetPosition(-900);
+                        rightWinch.setPower(1);
+                        leftWinch.setTargetPosition(-900);
+                        leftWinch.setPower(1);
+                        sleep(750);
+                        arch.setPosition(.363);
+                        sleep(200);
+                        hips.setPosition(.95);
+                        return false;
+
+                    })
+                    .strafeToConstantHeading(new Vector2d(54, -34.5))
+                    .build());
+            intake.setPower(0);
+//            sleep(300);
+//           hips.setPosition(.18);
+            backLeg.setPosition(.76);  // .9 is closed pos
+            sleep(50);
+            frontLeg.setPosition(.46);
+            sleep(150);
+            Actions.runBlocking(drive.actionBuilder(drive.pose)
+                    .strafeTo(new Vector2d(50.5, -34.5))
+                    .build());
+            backLeg.setPosition(.85);  // .9 is closed pos
+            sleep(50);
+            frontLeg.setPosition(.6);
+            sleep(150);
+            hips.setPosition(.18);
+            sleep(500);
+            arch.setPosition(.69);
+            sleep(50);
+            rightWinch.setTargetPosition(-20);
+            rightWinch.setPower(1);
+            leftWinch.setTargetPosition(-20);
+            leftWinch.setPower(1);
+            hips.setPosition(.27);
+            sleep(200);
+            backLeg.setPosition(.76);  // .9 is closed pos
+            frontLeg.setPosition(.52);
+            sleep(200);
+            sneakyLink.setPosition(.8); //weirdo position la la lala la
+            sneakyRink.setPosition(.2);
+            Actions.runBlocking(drive.actionBuilder(drive.pose)
+                    .splineToConstantHeading(new Vector2d(24.34, -57.83), Math.toRadians(180))
+                    .splineToConstantHeading(new Vector2d(-58.52, -34.71), Math.toRadians(135.00))
+                    .build());
+            sneakyLink.setPosition(.69); //weirdo position la la lala la
+            sneakyRink.setPosition(.31);
+            intake.setPower(-1);
+            sleep(400);
+            Actions.runBlocking(drive.actionBuilder(drive.pose)
+                    .strafeToConstantHeading(new Vector2d(-37.7, -59.6))
+                    .afterDisp(9, (a) -> { //20
+                        intake.setPower(0.7);
+                        return false;
+                    })
+                    .strafeToConstantHeading(new Vector2d(45.75, -59))
+                    .afterDisp(10, (a) -> {
+                        backLeg.setPosition(.81);
+                        frontLeg.setPosition(.61);
+//            sleep(300);
+//            hips.setPosition(.18); hips hips hips hips
+                        sleep(200);
+                        rightWinch.setTargetPosition(-1400);
+                        rightWinch.setPower(1);
+                        leftWinch.setTargetPosition(-1400);
+                        leftWinch.setPower(1);
+                        sleep(850);
+                        arch.setPosition(.363);
+                        return false;
+                    })
+                    .strafeToConstantHeading(new Vector2d(54.75, -35.7))
+                    .build());
+            intake.setPower(0);
+            backLeg.setPosition(.84);
+            frontLeg.setPosition(.61);
+//            sleep(300);
+//            hips.setPosition(.18); hips hips hips hips
+            sleep(200);
+            arch.setPosition(.363);
+            sleep(200);
+            backLeg.setPosition(.76);  // .9 is closed pos
+            sleep(50);
+            frontLeg.setPosition(.46);
+            sleep(150);
+
+
+        } else {
+            Actions.runBlocking(drive.actionBuilder(new Pose2d(-36.00, -63.00, Math.toRadians(270.00)))
+                    .strafeTo(new Vector2d(-39, -55.78))
+                    .strafeToLinearHeading(new Vector2d(-25.5, -38.84), Math.toRadians(300.00))
+                    .strafeToLinearHeading(new Vector2d(-50.24, -50.35), Math.toRadians(180.00))
+                    .splineToLinearHeading(new Pose2d(-58.8, -37.7, Math.toRadians(180.00)), Math.toRadians(138.00)) //stack
+                    .build());
+            hips.setPosition(.27);
+            sneakyLink.setPosition(.85); //weirdo position la la lala la
+            sneakyRink.setPosition(.15);
+            intake.setPower(-1);
+            sleep(850);
+
+            Actions.runBlocking(drive.actionBuilder(drive.pose)
+                    .strafeTo(new Vector2d(-55, -37.7)) //37.7
+                    .build());
+            sneakyLink.setPosition(.6); //weirdo position la la lala la
+            sneakyRink.setPosition(.4);
+
+            Actions.runBlocking(drive.actionBuilder(drive.pose)
+                    .strafeToConstantHeading(new Vector2d(-43.7, -58)) //goes to truss
+                    .afterDisp(9, (a) -> { //20
+                        sneakyLink.setPosition(.9); //weirdo position la la lala la
+                        sneakyRink.setPosition(.1);
+                        intake.setPower(0.7);
+                        return false;
+                    })
+                    .strafeToConstantHeading(new Vector2d(45.75, -58))//under truss ends on other side
+                    .afterDisp(12, (a) -> {
                         backLeg.setPosition(.81);
                         frontLeg.setPosition(.61);
 //            sleep(300);
@@ -158,7 +384,7 @@ public class BlueRightPlus3 extends LinearOpMode {
                         return false;
 
                     })
-                    .strafeToConstantHeading(new Vector2d(54.2,38)) //backdrop
+                    .strafeToConstantHeading(new Vector2d(54.2, -38)) //backdrop
                     .build());
             intake.setPower(0);
 //            sleep(300);
@@ -168,7 +394,7 @@ public class BlueRightPlus3 extends LinearOpMode {
             frontLeg.setPosition(.46);
             sleep(50);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeTo(new Vector2d(49, 43)) //back away
+                    .strafeTo(new Vector2d(49, -43)) //back away
                     .build());
             backLeg.setPosition(.85);  // .9 is closed pos
             sleep(50);
@@ -190,21 +416,21 @@ public class BlueRightPlus3 extends LinearOpMode {
             sneakyLink.setPosition(.8); //weirdo position la la lala la
             sneakyRink.setPosition(.2);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .splineToConstantHeading(new Vector2d(24.34, 57.83), Math.toRadians(180))
-                    .splineToConstantHeading(new Vector2d(-60.1, 34.71), Math.toRadians(225.00))
+                    .splineToConstantHeading(new Vector2d(24.34, -57.83), Math.toRadians(180))
+                    .splineToConstantHeading(new Vector2d(-60.1, -34.71), Math.toRadians(135.00))
                     .build());
             sneakyLink.setPosition(.69); //weirdo position la la lala la
             sneakyRink.setPosition(.31);
             intake.setPower(-1);
             sleep(400);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(-37.7,56.6)) //goes to truss
-                    .afterDisp(9,(a)->{ //20
+                    .strafeToConstantHeading(new Vector2d(-37.7, -56.6)) //goes to truss
+                    .afterDisp(9, (a) -> { //20
                         intake.setPower(0.7);
                         return false;
                     })
-                    .strafeToConstantHeading(new Vector2d(45.75,56))//under truss ends on other side
-                    .afterDisp(11,(a)->{
+                    .strafeToConstantHeading(new Vector2d(45.75, -56))//under truss ends on other side
+                    .afterDisp(11, (a) -> {
                         backLeg.setPosition(.81);
                         frontLeg.setPosition(.61);
 //            sleep(300);
@@ -218,7 +444,7 @@ public class BlueRightPlus3 extends LinearOpMode {
                         arch.setPosition(.363);
                         return false;
                     })
-                    .strafeToConstantHeading(new Vector2d(54.75,35.7))//backdrop
+                    .strafeToConstantHeading(new Vector2d(54.75, -35.7))//backdrop
                     .build());
             intake.setPower(0);
             backLeg.setPosition(.81);
@@ -232,241 +458,6 @@ public class BlueRightPlus3 extends LinearOpMode {
             sleep(50);
             frontLeg.setPosition(.46);
             sleep(150);
-        } else if (zone == 2) {
-            Actions.runBlocking(drive.actionBuilder(new Pose2d(-36.00, 63.00, Math.toRadians(90.00)))
-                    .strafeToConstantHeading(new Vector2d(-36.10, 32.77))
-                    .strafeToLinearHeading(new Vector2d(-58.5, 37.7), Math.toRadians(180.00))
-                    .build());
-            hips.setPosition(.27);
-            sneakyLink.setPosition(.85); //weirdo position la la lala la
-            sneakyRink.setPosition(.15);
-            intake.setPower(-1);
-            sleep(850);
-
-            Actions.runBlocking(drive.actionBuilder(drive.pose)
-                            .strafeTo(new Vector2d(-55,37.7))
-                                    .build());
-                        sneakyLink.setPosition(.6); //weirdo position la la lala la
-                        sneakyRink.setPosition(.4);
-
-            Actions.runBlocking(drive.actionBuilder(drive.pose)
-                            .strafeToConstantHeading(new Vector2d(-43.7,60))
-                    .afterDisp(9,(a)->{ //20
-                        sneakyLink.setPosition(.9); //weirdo position la la lala la
-                        sneakyRink.setPosition(.1);
-                        intake.setPower(0.7);
-                        return false;
-                    })
-                    .strafeToConstantHeading(new Vector2d(45.75,58.8))
-                    .afterDisp(12,(a)->{
-                        backLeg.setPosition(.81);
-                        frontLeg.setPosition(.61);
-//            sleep(300);
-                        sleep(200);
-                        rightWinch.setTargetPosition(-1000);
-                        rightWinch.setPower(1);
-                        leftWinch.setTargetPosition(-1000);
-                        leftWinch.setPower(1);
-                        sleep(850);
-                        arch.setPosition(.363);
-                        sleep(200);
-                        hips.setPosition(.95);
-                        return false;
-
-                    })
-                    .strafeToConstantHeading(new Vector2d(54.75,29.5))
-                            .build());
-            intake.setPower(0);
-//            sleep(300);
-//           hips.setPosition(.18);
-            backLeg.setPosition(.76);  // .9 is closed pos
-            sleep(50);
-            frontLeg.setPosition(.46);
-            sleep(50);
-            Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeTo(new Vector2d(50.5, 29.5))
-                    .build());
-            backLeg.setPosition(.85);  // .9 is closed pos
-            sleep(50);
-            frontLeg.setPosition(.6);
-            sleep(150);
-            hips.setPosition(.18);
-            sleep(500);
-            arch.setPosition(.69);
-            sleep(50);
-            rightWinch.setTargetPosition(-20);
-            rightWinch.setPower(1);
-            leftWinch.setTargetPosition(-20);
-            leftWinch.setPower(1);
-            hips.setPosition(.27);
-            sleep(200);
-            backLeg.setPosition(.76);  // .9 is closed pos
-            frontLeg.setPosition(.52);
-            sleep(200);
-            sneakyLink.setPosition(.8); //weirdo position la la lala la
-            sneakyRink.setPosition(.2);
-            Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .splineToConstantHeading(new Vector2d(24.34, 57.83), Math.toRadians(180))
-                    .splineToConstantHeading(new Vector2d(-60.52, 34.71), Math.toRadians(225.00))
-                    .build());
-            sneakyLink.setPosition(.69); //weirdo position la la lala la
-            sneakyRink.setPosition(.31);
-            intake.setPower(-1);
-            sleep(400);
-            Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(-37.7,56.6))
-                    .afterDisp(9,(a)->{ //20
-                        intake.setPower(0.7);
-                        return false;
-                    })
-                    .strafeToConstantHeading(new Vector2d(45.75,56))
-                    .afterDisp(10,(a)->{
-                        backLeg.setPosition(.81);
-                        frontLeg.setPosition(.61);
-//            sleep(300);
-//            hips.setPosition(.18); hips hips hips hips
-                        sleep(200);
-                        rightWinch.setTargetPosition(-1400);
-                        rightWinch.setPower(1);
-                        leftWinch.setTargetPosition(-1400);
-                        leftWinch.setPower(1);
-                        sleep(850);
-                        arch.setPosition(.363);
-                        return false;
-                    })
-                    .strafeToConstantHeading(new Vector2d(54.75,35.7))
-                    .build());
-            intake.setPower(0);
-            backLeg.setPosition(.81);
-            frontLeg.setPosition(.61);
-//            sleep(300);
-//            hips.setPosition(.18); hips hips hips hips
-            sleep(200);
-            arch.setPosition(.363);
-            sleep(200);
-            backLeg.setPosition(.76);  // .9 is closed pos
-            sleep(50);
-            frontLeg.setPosition(.46);
-            sleep(150);
-
-
-        } else {
-            Actions.runBlocking(drive.actionBuilder(new Pose2d(-36.00, 63.00, Math.toRadians(90.00)))
-                    .strafeToConstantHeading(new Vector2d(-47.05, 31.44))
-                    .strafeToLinearHeading(new Vector2d(-58.5, 37.7), Math.toRadians(180.00))
-                    .build());
-            hips.setPosition(.27);
-            sneakyLink.setPosition(.85); //weirdo position la la lala la
-            sneakyRink.setPosition(.15);
-            intake.setPower(-1);
-            sleep(850);
-
-            Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeTo(new Vector2d(-55,37.7))
-                    .build());
-            sneakyLink.setPosition(.6); //weirdo position la la lala la
-            sneakyRink.setPosition(.4);
-
-            Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(-43.7,60))
-                    .afterDisp(9,(a)->{ //20\
-                        sneakyLink.setPosition(.9); //weirdo position la la lala la
-                        sneakyRink.setPosition(.1);
-                        intake.setPower(.7);
-                        return false;
-                    })
-                    .strafeToConstantHeading(new Vector2d(45.75,58.8))
-                    .afterDisp(12,(a)->{
-                        backLeg.setPosition(.81);
-                        frontLeg.setPosition(.61);
-//            sleep(300);
-                        sleep(200);
-                        rightWinch.setTargetPosition(-1000);
-                        rightWinch.setPower(1);
-                        leftWinch.setTargetPosition(-1000);
-                        leftWinch.setPower(1);
-                        sleep(850);
-                        arch.setPosition(.363);
-                        sleep(200);
-                        hips.setPosition(.95);
-                        return false;
-
-                    })
-                    .strafeToConstantHeading(new Vector2d(54.75,23.5))
-                    .build());
-            intake.setPower(0);
-//            sleep(300);
-//           hips.setPosition(.18);
-            backLeg.setPosition(.76);  // .9 is closed pos
-            sleep(50);
-            frontLeg.setPosition(.46);
-            sleep(50);
-            Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeTo(new Vector2d(49, 23.5))
-                    .build());
-            backLeg.setPosition(.85);  // .9 is closed pos
-            sleep(50);
-            frontLeg.setPosition(.6);
-            sleep(150);
-            hips.setPosition(.18);
-            sleep(500);
-            arch.setPosition(.69);
-            sleep(50);
-            rightWinch.setTargetPosition(-20);
-            rightWinch.setPower(1);
-            leftWinch.setTargetPosition(-20);
-            leftWinch.setPower(1);
-            hips.setPosition(.27);
-            sleep(200);
-            backLeg.setPosition(.76);  // .9 is closed pos
-            frontLeg.setPosition(.52);
-            sleep(200);
-            sneakyLink.setPosition(.8); //weirdo position la la lala la
-            sneakyRink.setPosition(.2);
-            Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .splineToConstantHeading(new Vector2d(24.34, 57.83), Math.toRadians(180))
-                    .splineToConstantHeading(new Vector2d(-60.1, 34.71), Math.toRadians(225.00))
-                    .build());
-            sneakyLink.setPosition(.69); //weirdo position la la lala la
-            sneakyRink.setPosition(.31);
-            intake.setPower(-1);
-            sleep(400);
-            Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(-37.7,56.6))
-                    .afterDisp(9,(a)->{ //20
-                        intake.setPower(.7);
-                        return false;
-                    })
-                    .strafeToConstantHeading(new Vector2d(45.75,56))
-                    .afterDisp(12,(a)->{
-                        backLeg.setPosition(.81);
-                        frontLeg.setPosition(.61);
-//            sleep(300);
-//            hips.setPosition(.18); hips hips hips hips
-                        sleep(200);
-                        rightWinch.setTargetPosition(-1400);
-                        rightWinch.setPower(1);
-                        leftWinch.setTargetPosition(-1400);
-                        leftWinch.setPower(1);
-                        sleep(850);
-                        arch.setPosition(.363);
-                        return false;
-                    })
-                    .strafeToConstantHeading(new Vector2d(54.75,35.7))
-                    .build());
-            intake.setPower(0);
-            backLeg.setPosition(.81);
-            frontLeg.setPosition(.61);
-//            sleep(300);
-//            hips.setPosition(.18); hips hips hips hips
-            sleep(200);
-            arch.setPosition(.363);
-            sleep(200);
-            backLeg.setPosition(.76);  // .9 is closed pos
-            sleep(50);
-            frontLeg.setPosition(.46);
-            sleep(150);
-
 
         }
         drive.updatePoseEstimate();
@@ -479,7 +470,7 @@ public class BlueRightPlus3 extends LinearOpMode {
 
         if (zone == 1) {
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToLinearHeading(new Vector2d(47, 47),Math.toRadians(270))
+                    .strafeToLinearHeading(new Vector2d(47, -47), Math.toRadians(90))
                     .build());
             backLeg.setPosition(.85);  // .9 is closed pos
             sleep(50);
@@ -502,7 +493,7 @@ public class BlueRightPlus3 extends LinearOpMode {
             sleep(200);
         } else if (zone == 2) {
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToLinearHeading(new Vector2d(47, 47),Math.toRadians(270))
+                    .strafeToLinearHeading(new Vector2d(47, -47), Math.toRadians(90))
                     .build());
             backLeg.setPosition(.85);  // .9 is closed pos
             sleep(50);
@@ -557,7 +548,7 @@ public class BlueRightPlus3 extends LinearOpMode {
 
         } else
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToLinearHeading(new Vector2d(47, 47),Math.toRadians(270))
+                    .strafeToLinearHeading(new Vector2d(47, -47), Math.toRadians(90))
                     .build());
         backLeg.setPosition(.85);  // .9 is closed pos
         sleep(50);
@@ -583,31 +574,28 @@ public class BlueRightPlus3 extends LinearOpMode {
         telemetry.addLine("Pose" + drive.pose.position);
         telemetry.addLine("HEading" + Math.toDegrees(drive.pose.heading.log()));
         telemetry.update();
-        while(!isStopRequested()){
+        while (!isStopRequested()) {
 
         }
 
-        if(zone == 1){
+        if (zone == 1) {
             sleep(200);
-        }
-        else if( zone == 2){
+        } else if (zone == 2) {
 
             sleep(300);
-        }
-        else
+        } else
 
             //PARK
             sleep(200);
 
     }
 
-
-
-
-
-
-
-
-
-
 }
+
+
+
+
+
+
+
+
