@@ -105,7 +105,7 @@ public class TeleOpFieldCentric extends LinearOpMode{
 
 
         hips.setPosition(.27);
-        arch.setPosition(.69);
+        arch.setPosition(.972);
         backLeg.setPosition(.77);  // .9 is closed pos
         frontLeg.setPosition(.52); //  .6 is closed pos
         sneakyLink.setPosition(1); //  up from 0
@@ -143,7 +143,7 @@ public class TeleOpFieldCentric extends LinearOpMode{
                 sleep(50);
                 hips.setPosition(.18);
                 sleep(200);
-                arch.setPosition(.69);
+                arch.setPosition(.771);
                 sleep(50);
                 leftSlider = 7;
                 rightSlider = 7;
@@ -187,7 +187,7 @@ public class TeleOpFieldCentric extends LinearOpMode{
                 leftSlider =750;
                 rightSlider = 750;
                 sleep(50);
-                arch.setPosition(.363);
+                arch.setPosition(.771);
 //                sleep(200);
 //                hips.setPosition(.564);
 
