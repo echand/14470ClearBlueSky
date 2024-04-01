@@ -104,10 +104,10 @@ public class TeleOpFieldCentric extends LinearOpMode{
 
 
 
-        hips.setPosition(.27);
-        arch.setPosition(.972);
-        backLeg.setPosition(.77);  // .9 is closed pos
-        frontLeg.setPosition(.52); //  .6 is closed pos
+        hips.setPosition(.23); //.23 is rest
+        arch.setPosition(.972); //.972 is rest
+        backLeg.setPosition(.84);  // closer to 0 movess out, .84 is open
+        frontLeg.setPosition(.2); //  1 is open
         sneakyLink.setPosition(1); //  up from 0
         sneakyRink.setPosition(0); // down from 0
 
@@ -137,22 +137,22 @@ public class TeleOpFieldCentric extends LinearOpMode{
             }
 
             if (gamepad2.a) {
-                backLeg.setPosition(.85);  // .9 is closed pos
+                backLeg.setPosition(.84);  // .9 is closed pos
                 sleep(50);
-                frontLeg.setPosition(.6);
+                frontLeg.setPosition(.2);   // .5 is closed
                 sleep(50);
-                hips.setPosition(.18);
+                hips.setPosition(.215);
                 sleep(200);
-                arch.setPosition(.771);
+                arch.setPosition(.972);
                 sleep(50);
                 leftSlider = 7;
                 rightSlider = 7;
                 sleep(200);
-                hips.setPosition(.27);
+                hips.setPosition(.23);
                 sleep(50);
-                backLeg.setPosition(.76);  // .9 is closed pos
+                backLeg.setPosition(.84);  // .9 is closed pos
                 sleep(50);
-                frontLeg.setPosition(.52);
+                frontLeg.setPosition(.2);
 
 // test
 
@@ -162,15 +162,15 @@ public class TeleOpFieldCentric extends LinearOpMode{
 //            }
             telemetry.addLine("IMU: " + Math.toDegrees(drive.getHeading()));
             if(gamepad2.x){
-                shooter.setPower(-1);
+                shooter.setPower(1);
             }
             else{
                 shooter.setPower(0);
             }
 
             if(gamepad1.right_bumper){
-                sneakyLink.setPosition(.62);
-                sneakyRink.setPosition(.38);
+                sneakyLink.setPosition(.55);
+                sneakyRink.setPosition(.45);
             }
             if(gamepad1.dpad_down){
                 sneakyLink.setPosition(.7);
@@ -182,19 +182,19 @@ public class TeleOpFieldCentric extends LinearOpMode{
             }
             if(gamepad2.right_bumper){
                 backLeg.setPosition(.9);
-                frontLeg.setPosition(.7);
+                frontLeg.setPosition(.3);
                 sleep(30);
                 leftSlider =750;
                 rightSlider = 750;
                 sleep(50);
-                arch.setPosition(.771);
+                arch.setPosition(.771); // .771 is parallel
 //                sleep(200);
 //                hips.setPosition(.564);
 
             }
             if(gamepad2.left_bumper){
-                backLeg.setPosition(.62);  // .9 is closed pos
-                frontLeg.setPosition(.4);
+                backLeg.setPosition(.75);  // .9 is closed pos
+                frontLeg.setPosition(.1);
             }
             if(gamepad2.dpad_down){
                 hips.setPosition(.564);  // hor
