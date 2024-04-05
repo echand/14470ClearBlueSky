@@ -57,9 +57,9 @@ public class TeleOpFieldCentric extends LinearOpMode{
 
     public void sliderRunTo(double leftPos, double rightPos) {
         leftWinch.setTargetPosition((int) -leftPos);
-        leftWinch.setPower(0.8);
+        leftWinch.setPower(1);
         rightWinch.setTargetPosition((int) -rightPos);
-        rightWinch.setPower(0.8);
+        rightWinch.setPower(1);
 
     }
 
@@ -129,7 +129,7 @@ public class TeleOpFieldCentric extends LinearOpMode{
 
         while (opModeIsActive() && !isStopRequested()) {
 
-            double sliderState = gamepad2.right_trigger-gamepad2.left_trigger;
+            double sliderState = (gamepad2.right_trigger-gamepad2.left_trigger)*4;
 
             if(leftSlider < 0 || rightSlider < 0){
                 leftSlider = 0;
@@ -142,7 +142,7 @@ public class TeleOpFieldCentric extends LinearOpMode{
                 frontLeg.setPosition(.2);   // .5 is closed
                 sleep(50);
                 hips.setPosition(.215);
-                sleep(200);
+                sleep(400);
                 arch.setPosition(.972);
                 sleep(50);
                 leftSlider = 7;
@@ -173,8 +173,8 @@ public class TeleOpFieldCentric extends LinearOpMode{
                 sneakyRink.setPosition(.45);
             }
             if(gamepad1.dpad_down){
-                sneakyLink.setPosition(.7);
-                sneakyRink.setPosition(.3);
+                sneakyLink.setPosition(.6);
+                sneakyRink.setPosition(.4);
             }
             if(gamepad1.left_bumper){
                 sneakyLink.setPosition(1);
@@ -195,6 +195,10 @@ public class TeleOpFieldCentric extends LinearOpMode{
             if(gamepad2.left_bumper){
                 backLeg.setPosition(.75);  // .9 is closed pos
                 frontLeg.setPosition(.1);
+            }
+            if(gamepad2.b){
+                backLeg.setPosition(.9);  // .9 is closed pos
+                frontLeg.setPosition(.3);
             }
             if(gamepad2.dpad_down){
                 hips.setPosition(.564);  // hor
