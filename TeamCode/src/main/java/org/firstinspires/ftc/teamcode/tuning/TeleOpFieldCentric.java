@@ -129,7 +129,7 @@ public class TeleOpFieldCentric extends LinearOpMode{
 
         while (opModeIsActive() && !isStopRequested()) {
 
-            double sliderState = (gamepad2.right_trigger-gamepad2.left_trigger)*4;
+            double sliderState = (gamepad2.right_trigger-gamepad2.left_trigger)*2.5;
 
             if(leftSlider < 0 || rightSlider < 0){
                 leftSlider = 0;
