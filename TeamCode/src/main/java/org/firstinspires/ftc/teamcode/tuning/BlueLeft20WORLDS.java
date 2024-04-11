@@ -1,43 +1,26 @@
 package org.firstinspires.ftc.teamcode.tuning;
 
-import androidx.annotation.NonNull;
-
-import com.acmerobotics.dashboard.FtcDashboard;
-import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
-import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 
 import com.acmerobotics.roadrunner.Pose2d;
-import com.acmerobotics.roadrunner.PoseVelocity2d;
 import com.acmerobotics.roadrunner.Vector2d;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
-import com.qualcomm.robotcore.util.Range;
 
 
-import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-import org.openftc.apriltag.AprilTagDetection;
 import org.openftc.easyopencv.OpenCvCamera;
-import org.openftc.easyopencv.OpenCvCameraFactory;
-import org.openftc.easyopencv.OpenCvCameraRotation;
 
 
 import org.firstinspires.ftc.teamcode.MecanumDrive;
-import java.util.ArrayList;
 
 
 @Autonomous
-public class BlueLeftTheory extends LinearOpMode {
+public class BlueLeft20WORLDS extends LinearOpMode {
     OpenCvCamera camera;
 
     static final double FEET_PER_METER = 3.28084;
@@ -101,10 +84,10 @@ public class BlueLeftTheory extends LinearOpMode {
         rightWinch.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         leftWinch.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        hips.setPosition(.22); // og is .22
-        arch.setPosition(.69);
-        backLeg.setPosition(.77);  // .9 is closed pos
-        frontLeg.setPosition(.52); //  .6 is closed pos
+        hips.setPosition(.23); // og is .22
+        arch.setPosition(.972);
+        backLeg.setPosition(.84);  // .9 is closed pos
+        frontLeg.setPosition(.2); //  .6 is closed pos
         sneakyLink.setPosition(1); //  up from 0
         sneakyRink.setPosition(0); // down from 0
 
@@ -119,29 +102,29 @@ public class BlueLeftTheory extends LinearOpMode {
                     .strafeToConstantHeading(new Vector2d(23.53, 32.86))
                     .strafeToConstantHeading(new Vector2d(23.53, 42))
                     .build());
-            backLeg.setPosition(.82);
-            frontLeg.setPosition(.62);
+            backLeg.setPosition(.9);
+            frontLeg.setPosition(.3);
             sleep(300);
             rightWinch.setTargetPosition(-1000);
             rightWinch.setPower(.8);
             leftWinch.setTargetPosition(-1000);
             leftWinch.setPower(.8);
             sleep(1000);
-            arch.setPosition(.363);
+            arch.setPosition(.771);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
                     .strafeToLinearHeading(new Vector2d(52.5, 42.19), Math.toRadians(180.00))
                     .build());
-            backLeg.setPosition(.76);  // .9 is closed pos
+            backLeg.setPosition(.84);  // .9 is closed pos
             sleep(50);
-            frontLeg.setPosition(.52);
+            frontLeg.setPosition(.2);
             sleep(300);
-            backLeg.setPosition(.85);  // .9 is closed pos
+            backLeg.setPosition(.84);  // .9 is closed pos
             sleep(50);
-            frontLeg.setPosition(.6);
+            frontLeg.setPosition(.2);
             sleep(50);
             //  hips.setPosition(.18);
             // sleep(200);
-            arch.setPosition(.69);
+            arch.setPosition(.972);
             sleep(50);
             rightWinch.setTargetPosition(-20);
             rightWinch.setPower(.8);
@@ -149,8 +132,8 @@ public class BlueLeftTheory extends LinearOpMode {
             leftWinch.setPower(.8);
             // hips.setPosition(.27);
             sleep(300);
-            backLeg.setPosition(.76);  // .9 is closed pos
-            frontLeg.setPosition(.52);
+            backLeg.setPosition(.84);  // .9 is closed pos
+            frontLeg.setPosition(.2);
             sleep(300);
 
         } else if (zone == 2) {
@@ -158,29 +141,29 @@ public class BlueLeftTheory extends LinearOpMode {
                     .strafeTo(new Vector2d(12, 33))
                     .strafeTo(new Vector2d(12, 38))
                     .build());
-            backLeg.setPosition(.82);
-            frontLeg.setPosition(.62);
+            backLeg.setPosition(.9);
+            frontLeg.setPosition(.3);
             sleep(300);
             rightWinch.setTargetPosition(-1000);
             rightWinch.setPower(.8);
             leftWinch.setTargetPosition(-1000);
             leftWinch.setPower(.8);
             sleep(1000);
-            arch.setPosition(.363);
+            arch.setPosition(.771);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
                     .strafeToLinearHeading(new Vector2d(52.5, 35.7),  Math.toRadians(180.00))
                     .build());
-            backLeg.setPosition(.76);  // .9 is closed pos
+            backLeg.setPosition(.84);  // .9 is closed pos
             sleep(50);
-            frontLeg.setPosition(.52);
+            frontLeg.setPosition(.2);
             sleep(300);
-            backLeg.setPosition(.85);  // .9 is closed pos
+            backLeg.setPosition(.84);  // .9 is closed pos
             sleep(50);
-            frontLeg.setPosition(.6);
+            frontLeg.setPosition(.2);
             sleep(50);
             //  hips.setPosition(.18);
             // sleep(200);
-            arch.setPosition(.69);
+            arch.setPosition(.972);
             sleep(50);
             rightWinch.setTargetPosition(-20);
             rightWinch.setPower(.8);
@@ -188,8 +171,8 @@ public class BlueLeftTheory extends LinearOpMode {
             leftWinch.setPower(.8);
             // hips.setPosition(.27);
             sleep(300);
-            backLeg.setPosition(.76);  // .9 is closed pos
-            frontLeg.setPosition(.52);
+            backLeg.setPosition(.84);  // .9 is closed pos
+            frontLeg.setPosition(.2);
             sleep(300);
             //intake.setPower(0);
 
@@ -200,30 +183,30 @@ public class BlueLeftTheory extends LinearOpMode {
                     .strafeToLinearHeading(new Vector2d(2.43, 31.23), Math.toRadians(60.00))
                     .strafeToConstantHeading(new Vector2d(12, 50))
                     .build());
-            backLeg.setPosition(.82);
-            frontLeg.setPosition(.62);
+            backLeg.setPosition(.9);
+            frontLeg.setPosition(.3);
             sleep(300);
             rightWinch.setTargetPosition(-1000);
             rightWinch.setPower(.8);
             leftWinch.setTargetPosition(-1000);
             leftWinch.setPower(.8);
             sleep(1000);
-            arch.setPosition(.363);
+            arch.setPosition(.771);
 
             Actions.runBlocking(drive.actionBuilder(drive.pose)
                     .strafeToLinearHeading(new Vector2d(52.5, 27.99),  Math.toRadians(180.00))
                     .build());
-            backLeg.setPosition(.76);  // .9 is closed pos
+            backLeg.setPosition(.84);  // .9 is closed pos
             sleep(50);
-            frontLeg.setPosition(.52);
+            frontLeg.setPosition(.2);
             sleep(300);
-            backLeg.setPosition(.85);  // .9 is closed pos
+            backLeg.setPosition(.84);  // .9 is closed pos
             sleep(50);
-            frontLeg.setPosition(.6);
+            frontLeg.setPosition(.2);
             sleep(50);
             //  hips.setPosition(.18);
             // sleep(200);
-            arch.setPosition(.69);
+            arch.setPosition(.972);
             sleep(50);
             rightWinch.setTargetPosition(-20);
             rightWinch.setPower(.8);
@@ -231,8 +214,8 @@ public class BlueLeftTheory extends LinearOpMode {
             leftWinch.setPower(.8);
             // hips.setPosition(.27);
             sleep(300);
-            backLeg.setPosition(.76);  // .9 is closed pos
-            frontLeg.setPosition(.52);
+            backLeg.setPosition(.84);  // .9 is closed pos
+            frontLeg.setPosition(.2);
             sleep(300);
 
 
@@ -248,12 +231,12 @@ public class BlueLeftTheory extends LinearOpMode {
 
         if (zone == 1) {
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToLinearHeading(new Vector2d(49, 60), Math.toRadians(270))
+                    .strafeToLinearHeading(new Vector2d(49, 14), Math.toRadians(270))
                     .build());
             //zone 1 y on plus 4 is 55
         } else if (zone == 2) {
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToLinearHeading(new Vector2d(49, 60), Math.toRadians(270))
+                    .strafeToLinearHeading(new Vector2d(49, 14), Math.toRadians(270))
                     .build());
 
 
@@ -289,7 +272,7 @@ public class BlueLeftTheory extends LinearOpMode {
 
         } else
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToLinearHeading(new Vector2d(49, 60), Math.toRadians(270))
+                    .strafeToLinearHeading(new Vector2d(49, 14), Math.toRadians(270))
                     .build());
         drive.updatePoseEstimate();
         telemetry.addLine("Pose" + drive.pose.position);
