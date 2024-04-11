@@ -173,8 +173,8 @@ public class TeleOpFieldCentric extends LinearOpMode{
                 sneakyRink.setPosition(.45);
             }
             if(gamepad1.dpad_down){
-                sneakyLink.setPosition(.6);
-                sneakyRink.setPosition(.4);
+                sneakyLink.setPosition(.64); //test intake pos
+                sneakyRink.setPosition(.36);
             }
             if(gamepad1.left_bumper){
                 sneakyLink.setPosition(1);
