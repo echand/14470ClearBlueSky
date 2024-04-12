@@ -173,7 +173,7 @@ public class DaddyTrumpv2 extends LinearOpMode {
                         intake.setPower(1);
                         return false;
                     })
-                    .afterDisp(15,(a)->{
+                    .afterDisp(12,(a)->{
                         backLeg.setPosition(.9);
                         frontLeg.setPosition(.3);
 //            sleep(300);
@@ -226,12 +226,12 @@ public class DaddyTrumpv2 extends LinearOpMode {
             sleep(300);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
                     .strafeToConstantHeading(new Vector2d(-36.91, -11.56))
-                    .afterDisp(10,(a)->{ //20
+                    .afterDisp(6,(a)->{ //20
                         backLeg.setPosition(.9);
                         frontLeg.setPosition(.3);
                         return false;
                     })
-                    .afterDisp(15,(a)->{ //10
+                    .afterDisp(10,(a)->{ //10
 //            sleep(300);
                         hips.setPosition(.23);
                         sleep(200);
@@ -315,7 +315,7 @@ public class DaddyTrumpv2 extends LinearOpMode {
                         intake.setPower(1);
                         return false;
                     })
-                    .afterDisp(15,(a)->{
+                    .afterDisp(13,(a)->{
                         backLeg.setPosition(.9);
                         frontLeg.setPosition(.3);
 //            sleep(300);
@@ -368,12 +368,12 @@ public class DaddyTrumpv2 extends LinearOpMode {
             sleep(300);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
                     .strafeToConstantHeading(new Vector2d(-36.91, -11.56))
-                    .afterDisp(10,(a)->{ //20
+                    .afterDisp(6,(a)->{ //20
                         backLeg.setPosition(.9);
                         frontLeg.setPosition(.3);
                         return false;
                     })
-                    .afterDisp(15,(a)->{ //10
+                    .afterDisp(9,(a)->{ //10
 //            sleep(300);
                         hips.setPosition(.23);
                         sleep(200);
@@ -458,7 +458,7 @@ public class DaddyTrumpv2 extends LinearOpMode {
                         intake.setPower(1);
                         return false;
                     })
-                    .afterDisp(15,(a)->{
+                    .afterDisp(13,(a)->{
                         backLeg.setPosition(.9);
                         frontLeg.setPosition(.3);
 //            sleep(300);
@@ -511,12 +511,12 @@ public class DaddyTrumpv2 extends LinearOpMode {
             sleep(300);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
                     .strafeToConstantHeading(new Vector2d(-36.91, -11.56))
-                    .afterDisp(10,(a)->{ //20
+                    .afterDisp(6,(a)->{ //20
                         backLeg.setPosition(.9);
                         frontLeg.setPosition(.3);
                         return false;
                     })
-                    .afterDisp(15,(a)->{ //10
+                    .afterDisp(10,(a)->{ //10
 //            sleep(300);
                         hips.setPosition(.23);
                         sleep(200);

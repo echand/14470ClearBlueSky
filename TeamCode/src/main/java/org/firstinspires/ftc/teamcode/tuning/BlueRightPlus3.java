@@ -148,10 +148,10 @@ public class BlueRightPlus3 extends LinearOpMode {
             hips.setPosition(.23);
             sleep(100);
             rightWinch.setPower(1);
-            rightWinch.setTargetPosition(-1000);
+            rightWinch.setTargetPosition(-1100);
             rightWinch.setPower(1);
             leftWinch.setPower(1);
-            leftWinch.setTargetPosition(-1000);
+            leftWinch.setTargetPosition(-1100);
             leftWinch.setPower(1);
             sleep(450);
             arch.setPosition(.771);
@@ -174,7 +174,7 @@ public class BlueRightPlus3 extends LinearOpMode {
             frontLeg.setPosition(.2);
             sleep(150);
             hips.setPosition(.23);
-            sleep(300);
+            sleep(350);
             arch.setPosition(.972);
             sleep(250);
             rightWinch.setTargetPosition(-20);
@@ -214,7 +214,7 @@ public class BlueRightPlus3 extends LinearOpMode {
             arch.setPosition(.771); //.771 og when it was tweaking
             intake.setPower(0);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-            .splineToConstantHeading(new Vector2d(53,36),Math.toRadians(300))
+            .splineToConstantHeading(new Vector2d(53,34),Math.toRadians(315))
                     .build());
             backLeg.setPosition(.84);
             frontLeg.setPosition(.2);
@@ -326,7 +326,7 @@ public class BlueRightPlus3 extends LinearOpMode {
             arch.setPosition(.771); //.771 og when it was tweaking
             intake.setPower(0);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .splineToConstantHeading(new Vector2d(53,36),Math.toRadians(300))
+                    .splineToConstantHeading(new Vector2d(53,36),Math.toRadians(315))
                     .build());
             backLeg.setPosition(.84);
             frontLeg.setPosition(.2);
@@ -382,7 +382,7 @@ public class BlueRightPlus3 extends LinearOpMode {
             sleep(100);
             hips.setPosition(.564);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(53,30))
+                    .strafeToConstantHeading(new Vector2d(53,28))
                     .build());
             intake.setPower(0);
 //            sleep(300);
@@ -391,7 +391,7 @@ public class BlueRightPlus3 extends LinearOpMode {
             frontLeg.setPosition(.2);
             sleep(100);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeTo(new Vector2d(48, 30))
+                    .strafeTo(new Vector2d(48, 28))
                     .build());
             backLeg.setPosition(.84);  // .9 is closed pos
             sleep(50);
@@ -438,7 +438,7 @@ public class BlueRightPlus3 extends LinearOpMode {
             arch.setPosition(.771); //.771 og when it was tweaking
             intake.setPower(0);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .splineToConstantHeading(new Vector2d(53,36),Math.toRadians(300))
+                    .splineToConstantHeading(new Vector2d(53.5,36),Math.toRadians(305))
                     .build());
             backLeg.setPosition(.84);
             frontLeg.setPosition(.2);
@@ -463,6 +463,9 @@ public class BlueRightPlus3 extends LinearOpMode {
         //Drive to Backdrop
 
         if (zone == 1) {
+            Actions.runBlocking(drive.actionBuilder(drive.pose)
+                    .strafeTo(new Vector2d(49, 34))
+                    .build());
             rightWinch.setTargetPosition(-20);
             rightWinch.setPower(1);
             leftWinch.setTargetPosition(-20);
@@ -475,6 +478,9 @@ public class BlueRightPlus3 extends LinearOpMode {
             frontLeg.setPosition(.2);
             sleep(200);
         } else if (zone == 2) {
+            Actions.runBlocking(drive.actionBuilder(drive.pose)
+                    .strafeTo(new Vector2d(49, 36))
+                    .build());
             rightWinch.setTargetPosition(-20);
             rightWinch.setPower(1);
             leftWinch.setTargetPosition(-20);
@@ -519,6 +525,9 @@ public class BlueRightPlus3 extends LinearOpMode {
 //
 
         } else
+            Actions.runBlocking(drive.actionBuilder(drive.pose)
+                    .strafeTo(new Vector2d(49, 36))
+                    .build());
             rightWinch.setTargetPosition(-20);
         rightWinch.setPower(1);
         leftWinch.setTargetPosition(-20);
