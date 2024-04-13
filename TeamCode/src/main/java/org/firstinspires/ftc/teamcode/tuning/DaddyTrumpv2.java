@@ -231,19 +231,19 @@ public class DaddyTrumpv2 extends LinearOpMode {
                         frontLeg.setPosition(.3);
                         return false;
                     })
-                    .afterDisp(10,(a)->{ //10
+                    .afterDisp(8,(a)->{ //10
 //            sleep(300);
                         hips.setPosition(.23);
                         sleep(200);
-                        rightWinch.setTargetPosition(-1400);
+                        rightWinch.setTargetPosition(-1500);
                         rightWinch.setPower(1);
-                        leftWinch.setTargetPosition(-1400);
+                        leftWinch.setTargetPosition(-1500);
                         leftWinch.setPower(1);
                         sleep(850);
                         arch.setPosition(.771); //.771 og when it was tweaking
                         return false;
                     })
-                    .splineToConstantHeading(new Vector2d(53.5,-30),Math.toRadians(315))
+                    .splineToConstantHeading(new Vector2d(54.5,-34),Math.toRadians(325))
                     .build());
             intake.setPower(0);
             backLeg.setPosition(.84);
@@ -385,7 +385,7 @@ public class DaddyTrumpv2 extends LinearOpMode {
                         arch.setPosition(.771); //.771 og when it was tweaking
                         return false;
                     })
-                    .splineToConstantHeading(new Vector2d(54,-33),Math.toRadians(315))
+                    .splineToConstantHeading(new Vector2d(54,-35),Math.toRadians(315))
                     .build());
             intake.setPower(0);
             backLeg.setPosition(.84);

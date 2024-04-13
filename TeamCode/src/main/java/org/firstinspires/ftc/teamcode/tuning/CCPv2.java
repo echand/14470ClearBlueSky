@@ -122,7 +122,7 @@ public class CCPv2 extends LinearOpMode {
             sneakyLink.setPosition(.69); //test intake pos
             sneakyRink.setPosition(.31);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .splineToLinearHeading(new Pose2d(-57.3, -37.7, Math.toRadians(180.00)), Math.toRadians(138)) //222 radians
+                    .splineToLinearHeading(new Pose2d(-57.1, -37.7, Math.toRadians(180.00)), Math.toRadians(138)) //222 radians
                     .build());
             sneakyLink.setPosition(.665); //test intake pos
             sneakyRink.setPosition(.335);
@@ -185,7 +185,7 @@ public class CCPv2 extends LinearOpMode {
             frontLeg.setPosition(.2);
             sleep(200);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .splineToConstantHeading(new Vector2d(21.23,-56.8),Math.toRadians(185)) //175
+                    .splineToConstantHeading(new Vector2d(21.23,-59.8),Math.toRadians(185)) //175
                     .splineToConstantHeading(new Vector2d(-58.5,-36.5),Math.toRadians(135)) //225
                     .build());
             sneakyLink.setPosition(.62); //weirdo position la la lala la
@@ -193,8 +193,8 @@ public class CCPv2 extends LinearOpMode {
             intake.setPower(-1);
             sleep(300);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToLinearHeading(new Vector2d(-55, 59), Math.toRadians(180))
-                    .strafeToLinearHeading(new Vector2d(34, 59), Math.toRadians(180))
+                    .strafeToLinearHeading(new Vector2d(-55, -59), Math.toRadians(180))
+                    .strafeToLinearHeading(new Vector2d(34, -59), Math.toRadians(180))
                     .afterDisp(10,(a)->{ //20
                         backLeg.setPosition(.9);
                         frontLeg.setPosition(.3);
@@ -212,7 +212,7 @@ public class CCPv2 extends LinearOpMode {
             arch.setPosition(.771); //.771 og when it was tweaking
             intake.setPower(0);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .splineToConstantHeading(new Vector2d(53,36),Math.toRadians(60)) //300
+                    .splineToConstantHeading(new Vector2d(53,-36),Math.toRadians(60)) //300
                     .build());
             backLeg.setPosition(.84);
             frontLeg.setPosition(.2);
@@ -269,7 +269,7 @@ public class CCPv2 extends LinearOpMode {
             sleep(100);
             hips.setPosition(.564);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeToConstantHeading(new Vector2d(53,-34))
+                    .strafeToConstantHeading(new Vector2d(53,-31))
                     .build());
             intake.setPower(0);
 //            sleep(300)
@@ -278,7 +278,7 @@ public class CCPv2 extends LinearOpMode {
             frontLeg.setPosition(.2);
             sleep(100);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .strafeTo(new Vector2d(48, -34))
+                    .strafeTo(new Vector2d(48, -31))
                     .build());
             backLeg.setPosition(.84);  // .9 is closed pos
             sleep(50);
@@ -298,7 +298,7 @@ public class CCPv2 extends LinearOpMode {
             frontLeg.setPosition(.2);
             sleep(200);
             Actions.runBlocking(drive.actionBuilder(drive.pose)
-                    .splineToConstantHeading(new Vector2d(21.23,-56.8),Math.toRadians(185))
+                    .splineToConstantHeading(new Vector2d(21.23,-58),Math.toRadians(185))
                     .splineToConstantHeading(new Vector2d(-58.5,-36.5),Math.toRadians(135))
                     .build());
             sneakyLink.setPosition(.62); //weirdo position la la lala la

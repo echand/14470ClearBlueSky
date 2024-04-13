@@ -462,7 +462,7 @@ public class BlueRightPlus3 extends LinearOpMode {
 
         //Drive to Backdrop
 
-        if (zone == 1) {
+        if (zone == 1){
             Actions.runBlocking(drive.actionBuilder(drive.pose)
                     .strafeTo(new Vector2d(49, 34))
                     .build());

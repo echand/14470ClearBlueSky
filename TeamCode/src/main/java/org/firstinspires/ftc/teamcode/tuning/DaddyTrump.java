@@ -231,11 +231,11 @@ public class DaddyTrump extends LinearOpMode {
                         rightWinch.setPower(1);
                         leftWinch.setTargetPosition(-1400);
                         leftWinch.setPower(1);
-                        sleep(850);
+                        sleep(650);
                         arch.setPosition(.771);
                         return false;
                     })
-                    .splineToConstantHeading(new Vector2d(56,-33.7),Math.toRadians(315))
+                    .splineToConstantHeading(new Vector2d(56,-36.7),Math.toRadians(325))
                     .build());
             intake.setPower(0);
             backLeg.setPosition(.84);  // .9 is closed pos
