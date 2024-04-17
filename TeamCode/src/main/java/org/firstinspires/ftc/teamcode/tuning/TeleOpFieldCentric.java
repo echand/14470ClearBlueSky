@@ -182,7 +182,7 @@ public class TeleOpFieldCentric extends LinearOpMode{
             }
             if(gamepad2.right_bumper){
                 backLeg.setPosition(.92);
-                frontLeg.setPosition(.32);
+                frontLeg.setPosition(.32); //hi
                 sleep(50);
                 sleep(30);
                 leftSlider =750;
