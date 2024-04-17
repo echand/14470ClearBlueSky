@@ -181,8 +181,9 @@ public class TeleOpFieldCentric extends LinearOpMode{
                 sneakyRink.setPosition(0);
             }
             if(gamepad2.right_bumper){
-                backLeg.setPosition(.9);
-                frontLeg.setPosition(.3);
+                backLeg.setPosition(.92);
+                frontLeg.setPosition(.32);
+                sleep(50);
                 sleep(30);
                 leftSlider =750;
                 rightSlider = 750;
